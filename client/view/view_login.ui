@@ -47,7 +47,7 @@ background-color: rgb(255, 255, 255);
       <item alignment="Qt::AlignHCenter">
        <widget class="QLabel" name="lb_logo">
         <property name="text">
-         <string>logo</string>
+         <string>LOGO</string>
         </property>
        </widget>
       </item>
@@ -83,7 +83,7 @@ background-color: rgb(255, 255, 255);
         <property name="styleSheet">
          <string notr="true">QLineEdit{
 border: none; 
-border-bottom: 2px solid #00b3ce;
+border-bottom: 2px solid #212529;
 background-color: transparent;
 font-size: 20px;
 }
@@ -127,7 +127,7 @@ font-size: 20px;
         <property name="styleSheet">
          <string notr="true">QLineEdit{
 border: none; 
-border-bottom: 2px solid #00b3ce;
+border-bottom: 2px solid #212529;
 background-color: transparent;
 font-size: 20px;
 }
@@ -220,16 +220,18 @@ font-size: 20px;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <bold>false</bold>
+          <weight>62</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid #00b3ce;
+         <string notr="true">border: 2px solid #212529;
     background-color: #fff;
-    color: #00b3ce;
+    color: #212529;
     font-weight: 500;
-border-radius: 20px;
     font-size: 20px;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
 
 </string>
         </property>
@@ -250,16 +252,18 @@ border-radius: 20px;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <bold>false</bold>
+          <weight>62</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid #00b3ce;
+         <string notr="true">border: 2px solid #212529;
     background-color: #fff;
-    color: #00b3ce;
+    color: #212529;
     font-weight: 500;
-border-radius: 20px;
     font-size: 20px;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
 
 </string>
         </property>

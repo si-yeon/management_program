@@ -10,7 +10,6 @@ from client.view.view_login import Ui_Form as LoginView
 from client.storage.temporary_storage import TemporaryStorage
 
 
-
 class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
     def __init__(self):
         super().__init__()

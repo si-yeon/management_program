@@ -319,7 +319,7 @@ font-size: 20px;
              <number>0</number>
             </property>
             <item>
-             <widget class="QLineEdit" name="le_nick">
+             <widget class="QLineEdit" name="le_name">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -379,7 +379,7 @@ font-size: 20px;
              <number>0</number>
             </property>
             <item>
-             <widget class="QLineEdit" name="le_nick_4">
+             <widget class="QLineEdit" name="le_depart">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -439,7 +439,7 @@ font-size: 20px;
              <number>0</number>
             </property>
             <item>
-             <widget class="QLineEdit" name="le_nick_5">
+             <widget class="QLineEdit" name="le_position">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -496,7 +496,7 @@ font-size: 20px;
              <number>30</number>
             </property>
             <item>
-             <widget class="QListWidget" name="listWidget">
+             <widget class="QListWidget" name="lw_msg">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -562,8 +562,7 @@ background-color: transparent;</string>
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>62</weight>
-          <bold>true</bold>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -594,8 +593,7 @@ background-color: transparent;</string>
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>62</weight>
-          <bold>true</bold>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">

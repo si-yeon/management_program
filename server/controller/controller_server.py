@@ -14,7 +14,7 @@ class ServerController(TempStorage):
         self._serverSocket = socket(AF_INET, SOCK_STREAM)
         self._serverPort = self.serverport
         self._max_clients = self.max_clients
-
+        self.main = Room('main', self)
     def start(self):
         """
         서버 시작
@@ -57,11 +57,11 @@ class ServerController(TempStorage):
         while True:
             if not self._server_full():
                 connection_socket, addr = self._serverSocket.accept()
-                new_client = Client(f"Client{len(TempStorage.clients) + 1}",
-                                    connection_socket, addr)
-                TempStorage.clients.append(new_client)
+                new_client = Client(f"Client{len(self.clients) + 1}",
+                                    connection_socket, addr, self.main)
+                self.clients.append(new_client)
             else:
                 connection_socket, addr = self._serverSocket.accept()
-                connection_socket.send(("error" + TempStorage.header_split + "Server is full").encode("UTF-8"))
+                connection_socket.send(("error" + self.header_split + "Server is full").encode("UTF-8"))
                 connection_socket.close()
 

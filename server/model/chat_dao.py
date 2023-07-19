@@ -1,10 +1,10 @@
+import json
 import sqlite3
 
 import pandas as pd
 
-
 class ChatDAO:
-    def __init__(self, db_name='../db/data.db'):
+    def __init__(self, db_name='../server/db/data.db'):
         self.conn = sqlite3.connect(db_name)
 
     def insert_chat(self, **chatinfo):
@@ -32,8 +32,19 @@ class ChatDAO:
 
 
 if __name__ == "__main__":
-    dao = ChatDAO()
-    dao.insert_chat(type=['chatin'], content=['test'], time=['test'])
-    df = dao.get_all_chat()
+    dao = ChatDAO('../db/data.db')
+    data = dao.get_all_chat()
     dao.close_connection()
-    print(df)
+
+    reverse_data = data.iloc[::-1]
+
+    max_fifty_data = reverse_data.iloc[:50]
+
+    dict_data = max_fifty_data.to_dict('records')
+
+    json_data = json.dumps(dict_data)
+
+
+
+
+

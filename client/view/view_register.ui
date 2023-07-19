@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>497</width>
-    <height>303</height>
+    <width>517</width>
+    <height>320</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,10 +21,16 @@
        <widget class="QWidget" name="widget" native="true">
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="lb_product_img">
            <property name="minimumSize">
             <size>
-             <width>120</width>
+             <width>140</width>
+             <height>160</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>140</width>
              <height>160</height>
             </size>
            </property>
@@ -34,7 +40,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="pb_load">
            <property name="text">
             <string>불러오기</string>
            </property>
@@ -46,15 +52,8 @@
       <item>
        <widget class="QWidget" name="widget_2" native="true">
         <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>상품코드</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit"/>
+         <item row="6" column="1">
+          <widget class="QLineEdit" name="le_inven"/>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_4">
@@ -63,28 +62,8 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="comboBox"/>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>브랜드</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="lineEdit_2"/>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>상품명</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QLineEdit" name="lineEdit_3"/>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="le_sales"/>
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_6">
@@ -93,8 +72,51 @@
            </property>
           </widget>
          </item>
+         <item row="6" column="0" rowspan="2">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>재고</string>
+           </property>
+          </widget>
+         </item>
          <item row="4" column="1">
-          <widget class="QLineEdit" name="lineEdit_4"/>
+          <widget class="QLineEdit" name="le_purchase"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>브랜드</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1" rowspan="2">
+          <widget class="QLineEdit" name="le_safety_inven"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="le_name"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="le_brand"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="cb_type"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="le_code"/>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>안전재고</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>상품코드</string>
+           </property>
+          </widget>
          </item>
          <item row="5" column="0">
           <widget class="QLabel" name="label_7">
@@ -103,26 +125,10 @@
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
-          <widget class="QLineEdit" name="lineEdit_5"/>
-         </item>
-         <item row="6" column="0" rowspan="2">
-          <widget class="QLabel" name="label_8">
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>재고</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QLineEdit" name="lineEdit_6"/>
-         </item>
-         <item row="7" column="1" rowspan="2">
-          <widget class="QLineEdit" name="lineEdit_7"/>
-         </item>
-         <item row="8" column="0">
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>안전재고</string>
+            <string>상품명</string>
            </property>
           </widget>
          </item>
@@ -136,21 +142,21 @@
     <widget class="QWidget" name="widget_4" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="pb_save">
         <property name="text">
          <string>저장</string>
         </property>
        </widget>
       </item>
       <item alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="pb_reset">
         <property name="text">
          <string>다시작성</string>
         </property>
        </widget>
       </item>
       <item alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="pb_close">
         <property name="text">
          <string>닫기</string>
         </property>

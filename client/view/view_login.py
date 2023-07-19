@@ -44,7 +44,7 @@ class Ui_Form(object):
         self.le_id = QtWidgets.QLineEdit(self.frame_2)
         self.le_id.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-bottom: 2px solid #00b3ce;\n"
+"border-bottom: 2px solid #212529;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "}\n"
@@ -65,7 +65,7 @@ class Ui_Form(object):
         self.le_pw = QtWidgets.QLineEdit(self.frame_3)
         self.le_pw.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-bottom: 2px solid #00b3ce;\n"
+"border-bottom: 2px solid #212529;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "}\n"
@@ -113,14 +113,16 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(False)
+        font.setBold(True)
+        font.setWeight(62)
         self.pb_login.setFont(font)
-        self.pb_login.setStyleSheet("border: 2px solid #00b3ce;\n"
+        self.pb_login.setStyleSheet("border: 2px solid #212529;\n"
 "    background-color: #fff;\n"
-"    color: #00b3ce;\n"
+"    color: #212529;\n"
 "    font-weight: 500;\n"
-"border-radius: 20px;\n"
 "    font-size: 20px;\n"
+"    border-top-left-radius: 0.3rem;\n"
+"    border-top-right-radius: 0.3rem;\n"
 "\n"
 "")
         self.pb_login.setObjectName("pb_login")
@@ -130,14 +132,16 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(False)
+        font.setBold(True)
+        font.setWeight(62)
         self.pb_member.setFont(font)
-        self.pb_member.setStyleSheet("border: 2px solid #00b3ce;\n"
+        self.pb_member.setStyleSheet("border: 2px solid #212529;\n"
 "    background-color: #fff;\n"
-"    color: #00b3ce;\n"
+"    color: #212529;\n"
 "    font-weight: 500;\n"
-"border-radius: 20px;\n"
 "    font-size: 20px;\n"
+"    border-top-left-radius: 0.3rem;\n"
+"    border-top-right-radius: 0.3rem;\n"
 "\n"
 "")
         self.pb_member.setObjectName("pb_member")
@@ -150,7 +154,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "login"))
-        self.lb_logo.setText(_translate("Form", "logo"))
+        self.lb_logo.setText(_translate("Form", "LOGO"))
         self.cb_auto_fill.setText(_translate("Form", "자동완성"))
         self.cb_remember_id.setText(_translate("Form", "아이디 저장"))
         self.pb_login.setText(_translate("Form", "로그인"))

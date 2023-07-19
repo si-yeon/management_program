@@ -25,8 +25,6 @@ class Ui_Dialog(object):
         self.widget_2.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-top-left-radius : 20;\n"
-"border-top-right-radius : 20;\n"
 "}")
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_2)
@@ -43,7 +41,7 @@ class Ui_Dialog(object):
         self.le_ip = QtWidgets.QLineEdit(self.widget_2)
         self.le_ip.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-bottom: 2px solid #00b3ce;\n"
+"border-bottom: 2px solid  #212529;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "text-align: center;\n"
@@ -74,7 +72,7 @@ class Ui_Dialog(object):
         self.le_port = QtWidgets.QLineEdit(self.widget_3)
         self.le_port.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-bottom: 2px solid #00b3ce;\n"
+"border-bottom: 2px solid  #212529;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "text-align: center;\n"
@@ -89,8 +87,6 @@ class Ui_Dialog(object):
         self.widget_4.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-bottom-left-radius : 20;\n"
-"border-bottom-right-radius : 20;\n"
 "}")
         self.widget_4.setObjectName("widget_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget_4)
@@ -100,13 +96,16 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(False)
+        font.setBold(True)
+        font.setWeight(62)
         self.pb_connect.setFont(font)
-        self.pb_connect.setStyleSheet("background: #00b3ce;\n"
-"    color: #ffffff;\n"
+        self.pb_connect.setStyleSheet("border: 2px solid #212529;\n"
+"    background-color: #fff;\n"
+"    color: #212529;\n"
 "    font-weight: 500;\n"
-"border-radius: 20px;\n"
-"    font-size: 20px;")
+"    font-size: 20px;\n"
+"    border-top-left-radius: 0.3rem;\n"
+"    border-top-right-radius: 0.3rem;")
         self.pb_connect.setObjectName("pb_connect")
         self.horizontalLayout_2.addWidget(self.pb_connect, 0, QtCore.Qt.AlignHCenter)
         self.pb_close = QtWidgets.QPushButton(self.widget_4)
@@ -114,13 +113,16 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(False)
+        font.setBold(True)
+        font.setWeight(62)
         self.pb_close.setFont(font)
-        self.pb_close.setStyleSheet("background: #00b3ce;\n"
-"    color: #ffffff;\n"
+        self.pb_close.setStyleSheet("border: 2px solid #212529;\n"
+"    background-color: #fff;\n"
+"    color: #212529;\n"
 "    font-weight: 500;\n"
-"border-radius: 20px;\n"
-"    font-size: 20px;")
+"    font-size: 20px;\n"
+"    border-top-left-radius: 0.3rem;\n"
+"    border-top-right-radius: 0.3rem;")
         self.pb_close.setObjectName("pb_close")
         self.horizontalLayout_2.addWidget(self.pb_close, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout.addWidget(self.widget_4)
@@ -133,7 +135,7 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.label_2.setText(_translate("Dialog", "IP : "))
-        self.le_ip.setText(_translate("Dialog", "10.10.20.112"))
+        self.le_ip.setText(_translate("Dialog", "localhost"))
         self.label.setText(_translate("Dialog", "PORT : "))
         self.le_port.setText(_translate("Dialog", "5000"))
         self.pb_connect.setText(_translate("Dialog", "연결"))

@@ -30,7 +30,6 @@ class ConnectController(QDialog, ConnectView, TemporaryStorage):
         생성자 변수 선언 및 초기화
         """
         self.client_socket = None
-        self.name = None
         self.connected = False
         self.stop_flag = True
 
@@ -96,7 +95,7 @@ class ConnectController(QDialog, ConnectView, TemporaryStorage):
         :return:
         """
         while not self.stop_flag:
-            if not self.client_socket == None:
+            if self.client_socket is not None:
                 try:
                     response = self.client_socket.recv(4096).decode("UTF-8")
                     self._parse_packet(response)

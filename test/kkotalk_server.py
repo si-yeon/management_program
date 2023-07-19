@@ -209,7 +209,6 @@ class Client(TempData):
                 self._currentRoom.add_client(self)
                 self.sending_previous(0)
                 self.enter_send()
-                self._currentRoom.send_enter_message(self._clientName)
                 self.send_room_list()
                 print(f"{self._clientName} 이/가 접속 했습니다")
                 self.send_to_client('change' + header_split + '0')
@@ -367,14 +366,14 @@ class Room:
 
     # 방에 입장할 때 입장 메시지 전송
     def send_enter_message(self, name):
-        msg = 'update' + header_split + name + " 이/가 입장 했습니다."
+        msg = 'update' + header_split + name + " 이/가 입장했습니다."
         self.send_update(msg)
 
     # 방 접속자 리스트에서 클라이언트 제거
     def remove_client(self, c):
         if c in self._occupants:
             self._occupants.remove(c)
-        m = "update" + header_split + c._clientName + " 이/가 퇴장 했습니다."
+        m = "update" + header_split + c._clientName + " 이/가 퇴장했습니다."
         self.out_send()
         self.send_update(m)
 

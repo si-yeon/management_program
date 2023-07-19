@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'view_check.ui'
+# Form implementation generated from reading ui file 'view_take.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(311, 180)
-        Dialog.setMinimumSize(QtCore.QSize(0, 180))
-        Dialog.setMaximumSize(QtCore.QSize(16777215, 180))
+        Dialog.resize(296, 203)
+        Dialog.setMinimumSize(QtCore.QSize(0, 0))
+        Dialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
@@ -27,26 +27,59 @@ class Ui_Dialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.widget_2.sizePolicy().hasHeightForWidth())
         self.widget_2.setSizePolicy(sizePolicy)
-        self.widget_2.setMaximumSize(QtCore.QSize(16777215, 120))
+        self.widget_2.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Pretendard")
+        font.setPointSize(6)
+        self.widget_2.setFont(font)
         self.widget_2.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
 "}")
         self.widget_2.setObjectName("widget_2")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_2)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_3.setSpacing(0)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.lb_msg = QtWidgets.QLabel(self.widget_2)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget_2)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.label = QtWidgets.QLabel(self.widget_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setStyleSheet("background-color: transparent;\n"
+"font-size: 30px;\n"
+"text-align: center;\n"
+"\n"
+"\n"
+"")
+        self.label.setObjectName("label")
+        self.verticalLayout_2.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
+        self.spinBox = QtWidgets.QSpinBox(self.widget_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.spinBox.sizePolicy().hasHeightForWidth())
+        self.spinBox.setSizePolicy(sizePolicy)
+        self.spinBox.setMinimumSize(QtCore.QSize(200, 30))
         font = QtGui.QFont()
         font.setFamily("Pretendard")
-        font.setPointSize(17)
-        self.lb_msg.setFont(font)
-        self.lb_msg.setObjectName("lb_msg")
-        self.horizontalLayout_3.addWidget(self.lb_msg, 0, QtCore.Qt.AlignHCenter)
+        font.setPointSize(-1)
+        font.setBold(False)
+        self.spinBox.setFont(font)
+        self.spinBox.setStyleSheet("border: 2px solid #212529;\n"
+"    background-color: #fff;\n"
+"    color: #212529;\n"
+"    font-weight: 500;\n"
+"    font-size: 40px;\n"
+"    border-top-left-radius: 0.3rem;\n"
+"    border-top-right-radius: 0.3rem;")
+        self.spinBox.setObjectName("spinBox")
+        self.verticalLayout_2.addWidget(self.spinBox, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout.addWidget(self.widget_2)
         self.widget_4 = QtWidgets.QWidget(Dialog)
-        self.widget_4.setMaximumSize(QtCore.QSize(16777215, 60))
+        self.widget_4.setMinimumSize(QtCore.QSize(0, 60))
+        self.widget_4.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.widget_4.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -61,8 +94,7 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(62)
+        font.setBold(False)
         self.pb_check.setFont(font)
         self.pb_check.setStyleSheet("border: 2px solid #212529;\n"
 "    background-color: #fff;\n"
@@ -78,8 +110,7 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(62)
+        font.setBold(False)
         self.pb_cancel.setFont(font)
         self.pb_cancel.setStyleSheet("border: 2px solid #212529;\n"
 "    background-color: #fff;\n"
@@ -99,8 +130,8 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.lb_msg.setText(_translate("Dialog", "메세지"))
+        Dialog.setWindowTitle(_translate("Dialog", "입고"))
+        self.label.setText(_translate("Dialog", "상품코드:"))
         self.pb_check.setText(_translate("Dialog", "확인"))
         self.pb_cancel.setText(_translate("Dialog", "취소"))
 

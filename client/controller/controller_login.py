@@ -92,32 +92,34 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
 
     def show_membership_view(self):
         self.dlg.img_path = '../img/profile/who.png'
-        imgdata = open(self.dlg.img_path, 'rb').read()
-        pixmap = self.dlg.mask_image(imgdata)
+        pixmap = QPixmap(self.dlg.img_path)
         self.dlg.lb_profile_img.setPixmap(pixmap)
         self.dlg.le_id.clear()
         self.dlg.le_pw.clear()
-        self.dlg.le_nick.clear()
-        self.dlg.lb_warning_id.clear()
-        self.dlg.lb_warning_pw.clear()
-        self.dlg.lb_warning_nick.clear()
+        self.dlg.le_name.clear()
+        self.dlg.le_depart.clear()
+        self.dlg.le_position.clear()
+        self.dlg.lw_msg.clear()
         self.dlg.exec()
 
     def process_login(self):
         if self.info['connect'][0]:
-            dict_data = {'id': self.id_, 'pw': self.pw_}
-            json_data = json.dumps(dict_data)
-            msg = f'login{self.header_split}{json_data}'
-            self._send_json_packet(msg)
+            try:
+                dict_data = {'id': self.id_, 'pw': self.pw_}
+                json_data = json.dumps(dict_data)
+                msg = f'login{self.header_split}{json_data}'
+                self._send_json_packet(msg)
+            except Exception as e:
+                print(e)
 
     def _send_packet(self, p):
         print(p)
-        self.info['socket'][0].send(p.encode())
+        if self.info['connect']:
+            self.info['socket'][0].send(p.encode())
 
     def _send_json_packet(self, msg):
-        print(msg)
         if self.info['connect']:
-            self.client_socket.send(bytes(msg, 'utf-8'))
+            self.info['socket'][0].send(bytes(msg, 'utf-8'))
 
     def check_server_response(self):
         while not self.stop_flag:
@@ -132,7 +134,6 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
     def _parse_packet(self, p: str):
         parsed = p.split(self.header_split)
         command = parsed[0]
-        print('로그인' + p)
         if command == 'wrongpw':
             msg = '패스워드가 일치하지 않습니다!'
             self.lb_warning.setText(msg)
@@ -153,9 +154,10 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
             msg = '해당아이디가 존재합니다.'
             self.dlg.lb_warning_nick.setText(msg)
         elif command == 'welcome':
-            print('여기 탐?')
+            print("웰컴?")
             self.dlg.close()
 
     def closeEvent(self, e):
         self.stop_flag = True
-        self._send_packet(f'disconnect{self.header_split}')
+        if not self.info['connect']:
+            self._send_packet(f'disconnect{self.header_split}')

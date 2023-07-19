@@ -2,8 +2,8 @@ class ClothesDTO:
     def __init__(self, **kwargs):
         """
         의류 속성
-        :param code: 품목코드
-        :param division: 분류(아우터, 상의, 바지, 신발, 잡화)
+        :param code: 코드
+        :param type: 분류(아우터, 상의, 바지, 신발, 잡화)
         :param brand: 브랜드
         :param name: 품목명
         :param purchase_unit_price: 구매단가
@@ -14,8 +14,8 @@ class ClothesDTO:
         """
         if 'code' in kwargs:
             self.code = kwargs['code']
-        if 'division' in kwargs:
-            self.division = kwargs['division']
+        if 'type' in kwargs:
+            self.type = kwargs['type']
         if 'brand' in kwargs:
             self.brand = kwargs['brand']
         if 'name' in kwargs:
@@ -38,10 +38,10 @@ class ClothesDTO:
         self.code = code
 
     def get_division(self):
-        return self.division
+        return self.type
 
-    def set_division(self, division):
-        self.code = division
+    def set_division(self, type):
+        self.code = type
 
     def get_brand(self):
         return self.brand
@@ -49,10 +49,10 @@ class ClothesDTO:
     def set_brand(self, brand):
         self.brand = brand
 
-    def get_id(self):
+    def get_name(self):
         return self.name
 
-    def set_id(self, name):
+    def set_name(self, name):
         self.name = name
 
     def get_purchase_unit_price(self):

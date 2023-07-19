@@ -26,7 +26,6 @@ class RoomController(TempStorage):
     # 방 접속자 리스트에 클라이언트 추가
     def add_client(self, c):
         self._occupants.append(c)
-        c.input_client_login_data()
 
     # 방에 입장할 때 입장 메시지 전송
     def send_enter_message(self, name):
@@ -42,38 +41,10 @@ class RoomController(TempStorage):
         self.send_update(m)
 
     # 메시지 전송
-    def send_message(self, sender, _message):
-        packet = "_message" + self.header_split + sender + ': ' + _message
+    def send_message(self, sender, message):
+        packet = "message" + self.header_split + sender + ': ' + message
         for o in self._occupants:
             if not o.get_name() == sender:
-                o.send_to_client(packet)
-
-    # 1:1 메시지 전송
-    def send_duel_message(self, sender, nick, _message):
-        packet = "duel" + self.header_split + sender + ': ' + _message
-        for o in self._occupants:
-            if o.get_name() == nick:
-                o.send_to_client(packet)
-
-    # 1:1 메시지 초대
-    def send_duel_invite(self, sender, nick):
-        packet = "invite" + self.header_split + sender
-        for o in self._occupants:
-            if o.get_name() == nick:
-                o.send_to_client(packet)
-
-    # 1:1 초대 승인
-    def send_duel_accept(self, nick):
-        packet = "accept" + self.header_split
-        for o in self._occupants:
-            if o.get_name() == nick:
-                o.send_to_client(packet)
-
-    # 1:1
-    def send_duel_cancel(self, sender, nick):
-        packet = "cancel" + self.header_split + sender
-        for o in self._occupants:
-            if o.get_name() == nick:
                 o.send_to_client(packet)
 
     # 단체로 관련 메시지 전송

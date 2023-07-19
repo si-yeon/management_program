@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>720</height>
+    <height>740</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -43,28 +43,42 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="text">
-             <string>채팅</string>
+           <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <property name="spacing">
+             <number>0</number>
             </property>
-           </widget>
+            <item>
+             <widget class="QLabel" name="lb_no_read">
+              <property name="text">
+               <string>안 읽음</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pb_chat">
+              <property name="text">
+               <string>채팅</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_5">
+           <widget class="QPushButton" name="pb_timeline">
             <property name="text">
              <string>타임라인</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="pb_profile">
             <property name="text">
              <string>관리자 정보</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="pb_logout">
             <property name="text">
              <string>로그아웃</string>
             </property>
@@ -107,9 +121,16 @@
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_7">
                 <item>
-                 <widget class="QPushButton" name="pushButton_12">
+                 <widget class="QPushButton" name="pb_shortage_check">
                   <property name="text">
-                   <string>재고불러오기</string>
+                   <string>재고부족</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pb_inven_check">
+                  <property name="text">
+                   <string>재고현황</string>
                   </property>
                  </widget>
                 </item>
@@ -117,10 +138,10 @@
                  <widget class="QWidget" name="widget_11" native="true">
                   <layout class="QHBoxLayout" name="horizontalLayout_5">
                    <item>
-                    <widget class="QDateEdit" name="dateEdit">
+                    <widget class="QDateEdit" name="date_start">
                      <property name="dateTime">
                       <datetime>
-                       <hour>0</hour>
+                       <hour>15</hour>
                        <minute>0</minute>
                        <second>0</second>
                        <year>2000</year>
@@ -145,10 +166,10 @@
                     </widget>
                    </item>
                    <item>
-                    <widget class="QDateEdit" name="dateEdit_2">
+                    <widget class="QDateEdit" name="date_end">
                      <property name="dateTime">
                       <datetime>
-                       <hour>0</hour>
+                       <hour>15</hour>
                        <minute>0</minute>
                        <second>0</second>
                        <year>2000</year>
@@ -172,10 +193,10 @@
                  <widget class="QWidget" name="widget_12" native="true">
                   <layout class="QHBoxLayout" name="horizontalLayout_6">
                    <item alignment="Qt::AlignRight">
-                    <widget class="QLineEdit" name="lineEdit"/>
+                    <widget class="QLineEdit" name="le_find"/>
                    </item>
                    <item alignment="Qt::AlignRight">
-                    <widget class="QPushButton" name="pushButton_10">
+                    <widget class="QPushButton" name="pb_find">
                      <property name="text">
                       <string>검색</string>
                      </property>
@@ -197,35 +218,35 @@
            <widget class="QWidget" name="widget_3" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_4">
              <item>
-              <widget class="QPushButton" name="pushButton_3">
+              <widget class="QPushButton" name="pb_add">
                <property name="text">
                 <string>추가</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_6">
+              <widget class="QPushButton" name="pb_update">
                <property name="text">
                 <string>수정</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_7">
+              <widget class="QPushButton" name="pb_delete">
                <property name="text">
                 <string>삭제</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_8">
+              <widget class="QPushButton" name="pb_take_In">
                <property name="text">
                 <string>입고</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_9">
+              <widget class="QPushButton" name="pb_take_out">
                <property name="text">
                 <string>출고</string>
                </property>
@@ -259,23 +280,44 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QStackedWidget" name="stackedWidget">
+           <widget class="QStackedWidget" name="stack_view">
             <property name="currentIndex">
              <number>0</number>
             </property>
             <widget class="QWidget" name="page_chat">
              <layout class="QVBoxLayout" name="verticalLayout_5">
               <item>
-               <widget class="QListWidget" name="listWidget"/>
+               <widget class="QListWidget" name="lw_chat_room">
+                <property name="styleSheet">
+                 <string notr="true">QScrollBar
+{
+background : white;
+}
+QScrollBar::handle
+{
+background : #212529;
+}
+QScrollBar::handle::pressed
+{
+background : #212529;
+}
+QScrollArea
+{
+background-color: white;
+border: none;
+}
+</string>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QWidget" name="widget_13" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_8">
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_2"/>
+                  <widget class="QLineEdit" name="le_msg"/>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_11">
+                  <widget class="QPushButton" name="pb_send">
                    <property name="text">
                     <string>전송</string>
                    </property>
@@ -418,7 +460,7 @@
             <widget class="QWidget" name="page_timeline">
              <layout class="QVBoxLayout" name="verticalLayout_6">
               <item>
-               <widget class="QListWidget" name="listWidget_2"/>
+               <widget class="QListWidget" name="lw_time_line"/>
               </item>
              </layout>
             </widget>
@@ -438,7 +480,7 @@
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">

@@ -1,5 +1,8 @@
-from PyQt5.QtCore import QRegularExpression
-from PyQt5.QtGui import QRegularExpressionValidator
+import shutil
+from tkinter import filedialog
+
+from PyQt5.QtCore import QRegularExpression, Qt
+from PyQt5.QtGui import QRegularExpressionValidator, QPixmap
 from PyQt5.QtWidgets import QWidget
 
 
@@ -49,3 +52,4 @@ class CommonController:
             qwidget.setDisabled(False)
         else:
             qwidget.setDisabled(True)
+

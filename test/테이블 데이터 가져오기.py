@@ -40,18 +40,20 @@ class MainWindow(QMainWindow):
                 self.table_widget.setItem(row, col, item)
 
     def get_table_data(self):
-        table_data = []
-        for row in range(self.table_widget.rowCount()):
-            row_data = []
-            for col in range(self.table_widget.columnCount()):
-                item = self.table_widget.item(row, col)
-                if item is not None:
-                    row_data.append(item.text())
-                else:
-                    row_data.append('')
-            table_data.append(row_data)
+        print(self.table_widget.currentRow())
 
-        print(table_data)
+        # table_data = []
+        # for row in range(self.table_widget.rowCount()):
+        row_data = []
+        for col in range(self.table_widget.columnCount()):
+            item = self.table_widget.item(0, col)
+            if item is not None:
+                row_data.append(item.text())
+            else:
+                row_data.append('')
+        # table_data.append(row_data)
+
+        print(row_data)
 
 
 if __name__ == "__main__":

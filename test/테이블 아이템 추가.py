@@ -52,9 +52,24 @@ class MainWindow(QMainWindow):
                          for col in range(self.table_widget.columnCount()))
             self.table_widget.setRowHidden(row, hidden)
 
+    def qtablewidget_to_dict(self):
+        table_data = []
+        for row in range(self.table_widget.rowCount()):
+            row_data = {}
+            for col in range(self.table_widget.columnCount()):
+                item = self.table_widget.item(row, col)
+                if item is not None:
+                    row_data[self.table_widget.horizontalHeaderItem(col).text()] = item.text()
+                else:
+                    row_data[self.table_widget.horizontalHeaderItem(col).text()] = None
+            table_data.append(row_data)
+        return table_data
+
 
 if __name__ == "__main__":
     app = QApplication([])
     window = MainWindow()
     window.show()
+    a = window.qtablewidget_to_dict()
+    print(a)
     app.exec_()

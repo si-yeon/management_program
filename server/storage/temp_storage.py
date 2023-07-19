@@ -1,7 +1,9 @@
 class TempStorage:
-    # 구분자
+    # 서버 포트
     serverport = 5000
+    # 클라이언트 접속 제한
     max_clients = 10
+    # 구분자
     header_split = chr(1)  # 
     split_1 = chr(2)  # 
     split_2 = chr(3)  # 
@@ -9,5 +11,3 @@ class TempStorage:
     clients = []
     # 방 리스트
     room_list = []
-    # 클라이언트 접속 제한
-    # 서버 포트

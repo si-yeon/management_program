@@ -4,7 +4,7 @@ import pandas as pd
 
 
 class LogDAO:
-    def __init__(self, db_name='../db/data.db'):
+    def __init__(self, db_name='../server/db/data.db'):
         self.conn = sqlite3.connect(db_name)
 
     def insert_log(self, **loginfo):

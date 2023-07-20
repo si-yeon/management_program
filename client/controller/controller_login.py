@@ -50,7 +50,6 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
         생성자 변수 선언 및 초기화
         """
         self.is_ok = False
-        self.client_socket = self.info['socket'][0]
         self.stop_flag = False
         self.dlg = MembershipController()
 
@@ -108,30 +107,21 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
                 dict_data = {'id': self.id_, 'pw': self.pw_}
                 json_data = json.dumps(dict_data)
                 msg = f'login{self.header_split}{json_data}'
-                self._send_json_packet(msg)
+                self.send_json_packet(msg)
             except Exception as e:
                 print(e)
 
-    def _send_packet(self, p):
-        print(p)
-        if self.info['connect']:
-            self.info['socket'][0].send(p.encode())
-
-    def _send_json_packet(self, msg):
-        if self.info['connect']:
-            self.info['socket'][0].send(bytes(msg, 'utf-8'))
-
     def check_server_response(self):
         while not self.stop_flag:
-            if not self.client_socket == None:
+            if not self.info['socket'][0] == None:
                 try:
-                    response = self.client_socket.recv(4096).decode("UTF-8")
-                    self._parse_packet(response)
+                    response = self.info['socket'][0].recv(4096).decode("UTF-8")
+                    self.parse_packet(response)
                 except Exception as e:
                     print(e)
                     pass
 
-    def _parse_packet(self, p: str):
+    def parse_packet(self, p: str):
         parsed = p.split(self.header_split)
         command = parsed[0]
         if command == 'wrongpw':
@@ -160,4 +150,4 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
     def closeEvent(self, e):
         self.stop_flag = True
         if not self.info['connect']:
-            self._send_packet(f'disconnect{self.header_split}')
+            self.send_packet(f'disconnect{self.header_split}')

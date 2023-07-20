@@ -42,6 +42,7 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(17)
         self.lb_msg.setFont(font)
+        self.lb_msg.setStyleSheet("color: #164DCA;")
         self.lb_msg.setObjectName("lb_msg")
         self.horizontalLayout_3.addWidget(self.lb_msg, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout.addWidget(self.widget_2)
@@ -62,15 +63,17 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(62)
         self.pb_check.setFont(font)
-        self.pb_check.setStyleSheet("border: 2px solid #212529;\n"
-"    background-color: #fff;\n"
-"    color: #212529;\n"
-"    font-weight: 500;\n"
-"    font-size: 20px;\n"
-"    border-top-left-radius: 0.3rem;\n"
-"    border-top-right-radius: 0.3rem;")
+        self.pb_check.setStyleSheet("QPushButton{\n"
+"background: #164DCA;\n"
+"box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);\n"
+"align-items: center;\n"
+"color: #fff;\n"
+"font-weight: 600;\n"
+"font-size: 20px;\n"
+"border-radius: 10px;\n"
+"padding: 6px;\n"
+"}")
         self.pb_check.setObjectName("pb_check")
         self.horizontalLayout_2.addWidget(self.pb_check, 0, QtCore.Qt.AlignHCenter)
         self.pb_cancel = QtWidgets.QPushButton(self.widget_4)
@@ -79,15 +82,17 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(62)
         self.pb_cancel.setFont(font)
-        self.pb_cancel.setStyleSheet("border: 2px solid #212529;\n"
-"    background-color: #fff;\n"
-"    color: #212529;\n"
-"    font-weight: 500;\n"
-"    font-size: 20px;\n"
-"    border-top-left-radius: 0.3rem;\n"
-"    border-top-right-radius: 0.3rem;")
+        self.pb_cancel.setStyleSheet("QPushButton{\n"
+"background: #164DCA;\n"
+"box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);\n"
+"align-items: center;\n"
+"color: #fff;\n"
+"font-weight: 600;\n"
+"font-size: 20px;\n"
+"border-radius: 10px;\n"
+"padding: 6px;\n"
+"}")
         self.pb_cancel.setObjectName("pb_cancel")
         self.horizontalLayout_2.addWidget(self.pb_cancel, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout.addWidget(self.widget_4)

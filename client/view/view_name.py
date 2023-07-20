@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'view_take.ui'
+# Form implementation generated from reading ui file 'view_name.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(296, 203)
-        Dialog.setMinimumSize(QtCore.QSize(0, 0))
-        Dialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        Dialog.resize(311, 180)
+        Dialog.setMinimumSize(QtCore.QSize(0, 180))
+        Dialog.setMaximumSize(QtCore.QSize(16777215, 180))
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
@@ -27,60 +27,28 @@ class Ui_Dialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.widget_2.sizePolicy().hasHeightForWidth())
         self.widget_2.setSizePolicy(sizePolicy)
-        self.widget_2.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        font = QtGui.QFont()
-        font.setFamily("Pretendard")
-        font.setPointSize(6)
-        self.widget_2.setFont(font)
+        self.widget_2.setMaximumSize(QtCore.QSize(16777215, 120))
         self.widget_2.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
 "}")
         self.widget_2.setObjectName("widget_2")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget_2)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_2.setSpacing(0)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.lb_code = QtWidgets.QLabel(self.widget_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lb_code.sizePolicy().hasHeightForWidth())
-        self.lb_code.setSizePolicy(sizePolicy)
-        self.lb_code.setStyleSheet("background-color: transparent;\n"
-"font-size: 30px;\n"
-"text-align: center;\n"
-" color: #164DCA;\n"
-"\n"
-"\n"
-"")
-        self.lb_code.setObjectName("lb_code")
-        self.verticalLayout_2.addWidget(self.lb_code, 0, QtCore.Qt.AlignHCenter)
-        self.sb_num = QtWidgets.QSpinBox(self.widget_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.sb_num.sizePolicy().hasHeightForWidth())
-        self.sb_num.setSizePolicy(sizePolicy)
-        self.sb_num.setMinimumSize(QtCore.QSize(200, 30))
-        font = QtGui.QFont()
-        font.setFamily("Pretendard")
-        font.setPointSize(-1)
-        font.setBold(False)
-        self.sb_num.setFont(font)
-        self.sb_num.setStyleSheet("border: 2px solid #164DCA;\n"
-"    background-color: #fff;\n"
-"    color: #164DCA;\n"
-"    font-weight: 500;\n"
-"    font-size: 40px;\n"
-"    border-top-left-radius: 0.3rem;\n"
-"    border-top-right-radius: 0.3rem;")
-        self.sb_num.setObjectName("sb_num")
-        self.verticalLayout_2.addWidget(self.sb_num, 0, QtCore.Qt.AlignHCenter)
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_2)
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_3.setSpacing(0)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.le_file_name = QtWidgets.QLineEdit(self.widget_2)
+        self.le_file_name.setMinimumSize(QtCore.QSize(200, 0))
+        self.le_file_name.setStyleSheet("    text-align: center;\n"
+"    border: 1px solid #164DCA;\n"
+"font-size: 20px;\n"
+"border: none;\n"
+"border-bottom: 2px solid #164DCA;")
+        self.le_file_name.setObjectName("le_file_name")
+        self.horizontalLayout_3.addWidget(self.le_file_name, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout.addWidget(self.widget_2)
         self.widget_4 = QtWidgets.QWidget(Dialog)
-        self.widget_4.setMinimumSize(QtCore.QSize(0, 60))
-        self.widget_4.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.widget_4.setMaximumSize(QtCore.QSize(16777215, 60))
         self.widget_4.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -137,8 +105,8 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "입고"))
-        self.lb_code.setText(_translate("Dialog", "상품코드:"))
+        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.le_file_name.setPlaceholderText(_translate("Dialog", "파일명을 입력해주세요."))
         self.pb_check.setText(_translate("Dialog", "확인"))
         self.pb_cancel.setText(_translate("Dialog", "취소"))
 

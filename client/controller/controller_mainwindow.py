@@ -1,16 +1,25 @@
+import json
 import sys
 import threading
+from datetime import datetime
 
+import openpyxl
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QListWidgetItem, QWidget, QHBoxLayout, QLabel, \
     QSpacerItem, QSizePolicy
 
+from client.controller.controller_check import CheckDialog
+from client.controller.controller_common import CommonController
+from client.controller.controller_name import NameDialog
 from client.controller.controller_register import RegisterController
 from client.controller.controller_signal import SignalController as Signal
-from client.view.view_main import Ui_MainWindow as MainView
+from client.controller.controller_take import TakeController
 from client.storage.temporary_storage import TemporaryStorage
+from client.view.view_main import Ui_MainWindow as MainView
 
-class MainWindowController(QMainWindow, MainView, TemporaryStorage):
+
+class MainWindowController(QMainWindow, MainView, CommonController, TemporaryStorage):
     def __init__(self):
         super().__init__()
         self.init_setting()
@@ -44,42 +53,57 @@ class MainWindowController(QMainWindow, MainView, TemporaryStorage):
             "name": "상품명",
             "purchase_unit_price": "구매단가",
             "sales_unit_price": "판매단가",
-            "inventory": "재고",
             "safety_inventory": "안전재고",
+            "inventory": "재고",
         }
 
     def init_widget(self):
         """
         생성자 위젯 설정
         """
-        self.tableWidget.setRowCount(10)
-        self.tableWidget.setColumnCount(10)
+        self.pb_chat.setIcon(QIcon('../img/icon/chat.png'))
+        self.pb_timeline.setIcon(QIcon('../img/icon/time.png'))
+        self.pb_profile.setIcon(QIcon('../img/icon/profile.png'))
+        self.pb_logout.setIcon(QIcon('../img/icon/logout.png'))
+        self.pb_find.setIcon(QIcon('../img/icon/search.png'))
+        self.pb_excel.setIcon(QIcon('../img/icon/excel.png'))
+
+
+        self.tableWidget.setColumnCount(len(self.column_map))
         self.tableWidget.setHorizontalHeaderLabels(self.column_map.values())
 
     def init_signal(self):
         """
         생성자 시그널
         """
+        # 엑셀
+        self.pb_excel.clicked.connect(self.export_to_excel)
+
+        # 검색
+        self.le_find.returnPressed.connect(self.filter_table)
+        self.pb_find.clicked.connect(self.filter_table)
+
         # 추가 버튼 클릭
-        self.pb_add.clicked.connect(self.show_register_view)
+        self.pb_add.clicked.connect(lambda x=None, txt='추가': self.show_register_view(txt))
 
         # 수정 버튼 클릭
-        self.pb_update.clicked.connect(self.show_register_view)
+        self.pb_update.clicked.connect(lambda x=None, txt='수정': self.show_register_view(txt))
 
-        # 삭제 버튼 클릭
+        # 삭제 버튼 클릭(txt
         self.pb_delete.clicked.connect(self.delete_product)
 
         # 입고 버튼 클릭
-        self.pb_delete.clicked.connect(self.show_take_view)
+        self.pb_take_In.clicked.connect(lambda x=None, txt='입고': self.show_take_view(txt))
 
         # 출고 버튼 클릭
-        self.pb_delete.clicked.connect(self.show_take_view)
+        self.pb_take_out.clicked.connect(lambda x=None, txt='출고': self.show_take_view(txt))
 
         # 채팅 버튼 클릭
         self.pb_chat.clicked.connect(self.show_chat_view)
 
         # 타임라인 버튼 클릭
         self.pb_timeline.clicked.connect(self.show_timeline_view)
+        self.signal.timeline_siganl.connect(self.add_timeline_message)
 
         # 관리자 정보 버튼 클릭
         self.pb_profile.clicked.connect(self.show_profile_view)
@@ -97,12 +121,92 @@ class MainWindowController(QMainWindow, MainView, TemporaryStorage):
         생성자 함수
         """
         self.send_packet(f'enter{self.header_split}')
+        self.tableWidget.clear()
 
-    def show_take_view(self):
+    def export_to_excel(self):
+        dlg = NameDialog()
+        dlg.exec()
+
+        if dlg.is_check:
+            file_name = dlg.file_name
+            workbook = openpyxl.Workbook()
+            sheet = workbook.active
+            for row in range(self.tableWidget.rowCount()):
+                for col in range(self.tableWidget.columnCount()):
+                    item = self.tableWidget.item(row, col)
+                    if item is not None:
+                        sheet.cell(row=row + 1, column=col + 1, value=item.text())
+
+            workbook.save(file_name)
+
+
+    def filter_table(self):
+        """
+        테이블 검색
+        :return:
+        """
+        filter_text = self.le_find.text().strip().lower()
+
+        for row in range(self.tableWidget.rowCount()):
+            code_item = self.tableWidget.item(row, 1)
+            type_item = self.tableWidget.item(row, 2)
+            brand_item = self.tableWidget.item(row, 3)
+            name_item = self.tableWidget.item(row, 4)
+            code = code_item.text().lower()
+            type = type_item.text().lower()
+            brand = brand_item.text().lower()
+            name = name_item.text().lower()
+
+            find_list = code + type + brand + name
+
+            if filter_text in find_list:
+                self.tableWidget.setRowHidden(row, False)
+            else:
+                self.tableWidget.setRowHidden(row, True)
+
+    def show_take_view(self, action: str):
         """
         입,출고 창 보여주기
         :return:
         """
+        row_data = self.get_selected_row_data()
+        if len(row_data) > 0:
+            dlg = TakeController(row_data['code'])
+            dlg.exec()
+            if dlg.is_check:
+                code = row_data['code']
+                name = row_data['name']
+                inventory = row_data['inventory']
+                amount = dlg.sb_num.text()
+                time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                if action == '입고':
+                    result = int(inventory) + int(amount)
+                    row_data['inventory'] = str(result)
+                    take_info = {'code': [code], 'amount': [amount], 'time': [time]}
+                    json_data = json.dumps(take_info)
+                    msg = f'take_in{self.header_split}{json_data}'
+                    self.send_json_packet(msg)
+                    self.signal.timeline_siganl.emit(f'{name}[{code}]을/를 {amount}개 입고하였습니다.', time)
+                else:
+                    result = int(inventory) - int(amount)
+                    if result >= 0:
+                        row_data['inventory'] = str(result)
+                        take_info = {'code': [code], 'amount': [amount], 'time': [time]}
+                        json_data = json.dumps(take_info)
+                        msg = f'take_out{self.header_split}{json_data}'
+                        self.send_json_packet(msg)
+                        self.signal.timeline_siganl.emit(f'{name}[{code}]을/를 {amount}개 출고하였습니다.', time)
+                    else:
+                        check_dlg = CheckDialog('출고할 재고가 부족합니다.')
+                        check_dlg.exec()
+                json_data = json.dumps(row_data)
+                msg = f'modify{self.header_split}{json_data}'
+                self.send_json_packet(msg)
+                self.clear_all_rows()
+                self.signal.timeline_siganl.emit(f'{name}[{code}]이/가 수정되었습니다.', time)
+        else:
+            check_dlg = CheckDialog('삭제할 상품을 먼저 선택해주세요!')
+            check_dlg.exec()
 
     def show_timeline_view(self):
         """
@@ -130,15 +234,72 @@ class MainWindowController(QMainWindow, MainView, TemporaryStorage):
             self.lb_no_read.setText('0')
             self.is_read = True
 
-    def show_register_view(self):
+    def show_register_view(self, action: str):
         """
         등록 화면 보여주기
         :return:
         """
-        dlg = RegisterController()
-        dlg.exec()
+        if action == '수정':
+            selected_rows = set(index.row() for index in self.tableWidget.selectedIndexes())
+            data = []
+            row_data = self.get_selected_row_data()
+            code = row_data['code']
+            name = row_data['name']
+            time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            if len(row_data) > 0:
+                dlg = RegisterController(row_data)
+                dlg.code.setDisabled(True)
+                dlg.exec()
+                if dlg.is_save:
+                    json_data = json.dumps(dlg.row_data)
+                    msg = f'modify{self.header_split}{json_data}'
+                    self.send_json_packet(msg)
+                    self.clear_all_rows()
+                    self.signal.timeline_siganl.emit(f'{name}[{code}]이/가 수정되었습니다.', time)
+            else:
+                check_dlg = CheckDialog('수정할 상품을 먼저 선택해주세요!')
+                check_dlg.exec()
+        else:
+            dlg = RegisterController()
+            dlg.reset_all()
+            dlg.exec()
+            dict_data = {}
+            if len(dlg.row_data) > 0:
+                code = dlg.row_data['code']
+                name = dlg.row_data['name']
+                time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                for k, v in dlg.row_data.items():
+                    dict_data[k] = [v]
+                if dlg.is_save:
+                    json_data = json.dumps(dict_data)
+                    msg = f'add{self.header_split}{json_data}'
+                    self.send_json_packet(msg)
+                    self.clear_all_rows()
+                    self.signal.timeline_siganl.emit(f'{name}[{code}]이/가 추가되었습니다.', time)
+
+    def get_selected_row_data(self):
+        selected_rows = set(index.row() for index in self.tableWidget.selectedIndexes())
+        row_data = {}
+        data = []
+        if selected_rows:
+            for row in selected_rows:
+                for col in range(self.tableWidget.columnCount()):
+                    item = self.tableWidget.item(row, col)
+                    data.append(item.text() if item else "")
+            row_data = dict(zip(self.column_map.keys(), data))
+        return row_data
+
+    def clear_all_rows(self):
+        num_rows = self.tableWidget.rowCount()
+
+        for row in reversed(range(num_rows)):
+            self.tableWidget.removeRow(row)
 
     def add_new_row(self):
+        """
+        테이블 위젯 행 추가
+        :return:
+        """
         checkbox_item = QTableWidgetItem()
         checkbox_item.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
         checkbox_item.setCheckState(Qt.Unchecked)
@@ -158,12 +319,27 @@ class MainWindowController(QMainWindow, MainView, TemporaryStorage):
         :param data: list(dict())
         :return:
         """
-        # for row, product in enumerate(data):
+        self.tableWidget.setHorizontalHeaderLabels(self.column_map.values())
+        row = self.tableWidget.rowCount()
+        self.tableWidget.setRowCount(row + 1)
         for col, (field_eng, field_kor) in enumerate(self.column_map.items()):
             item = QTableWidgetItem(str(data[field_eng]))
-            self.table_widget.setItem(row, col, item)
+            self.tableWidget.setItem(row, col, item)
 
-    def add_chat_message(self, msg, who: str):
+    def add_timeline_message(self, msg: str, time: str):
+        """
+        타임라인 메시지
+        :param self:
+        :param msg: 메시지
+        :param who: server,other,me
+        :return:
+        """
+        self.lw_time_line.addItem(msg)
+        self.lw_time_line.addItem(time)
+        last_row_index = self.lw_time_line.count() - 1
+        self.lw_time_line.setCurrentRow(last_row_index)
+
+    def add_chat_message(self, msg: str, who: str):
         """
         :param self:
         :param msg: 메시지
@@ -188,7 +364,7 @@ class MainWindowController(QMainWindow, MainView, TemporaryStorage):
             self.msg_label.setAlignment(Qt.AlignCenter)
             self.msg_hbox_layout.addWidget(self.msg_label)
         elif who == 'me':
-            self.msg_label.setStyleSheet("background-color: #212529; padding: 5px; border-radius: 10px; color: #fff")
+            self.msg_label.setStyleSheet("background-color: #164DCA; padding: 5px; border-radius: 10px; color: #fff")
             self.msg_hbox_layout.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
             self.msg_hbox_layout.addWidget(self.msg_label)
         elif who == 'other':
@@ -212,6 +388,18 @@ class MainWindowController(QMainWindow, MainView, TemporaryStorage):
         선택한 상품 삭제
         :return:
         """
+        row_data = self.get_selected_row_data()
+        if len(row_data) > 0:
+            check_dlg = CheckDialog(f"[상품{row_data['code']}]를 정말 삭제하시겠습니까?")
+            check_dlg.exec()
+            if check_dlg.is_check:
+                json_data = json.dumps(row_data)
+                msg = f'delete{self.header_split}{json_data}'
+                self.send_json_packet(msg)
+                self.clear_all_rows()
+        else:
+            check_dlg = CheckDialog('삭제할 상품을 먼저 선택해주세요!')
+            check_dlg.exec()
 
     def send_message(self):
         """
@@ -224,21 +412,18 @@ class MainWindowController(QMainWindow, MainView, TemporaryStorage):
             self.signal.chat_signal.emit(get_text, 'me')
             self.le_msg.clear()
 
-    def send_packet(self, p):
-        self.info['socket'][0].send(p.encode("UTF-8"))
-
     def check_server_response(self):
         while self.info['connect'][0]:
             if not self.info['socket'][0] == None:
                 try:
                     response = self.info['socket'][0].recv(4096).decode("UTF-8")
                     if len(response.encode('utf8')) <= 4096:
-                        self._parse_packet(response)
+                        self.parse_packet(response)
                 except Exception as e:
                     print(e)
                     pass
 
-    def _parse_packet(self, p: str):
+    def parse_packet(self, p: str):
         """
         서버로부터 수신한 메시지 분류
         :param p:
@@ -246,10 +431,9 @@ class MainWindowController(QMainWindow, MainView, TemporaryStorage):
         """
         parsed = p.split(self.header_split)
         command = parsed[0].strip()
-        print(command)
         # 대화
         if command == 'message':
-            self.signal.chat_signal.emit(' '.join(parsed[1:]).strip(), 'other')
+            self.signal.chat_signal.emit(self.header_split.join(parsed[1:]).strip(), 'other')
         # 지난 대화기록
         elif command == 'log':
             data = eval(''.join(parsed[1:]).strip())
@@ -259,7 +443,6 @@ class MainWindowController(QMainWindow, MainView, TemporaryStorage):
                 self.signal.chat_signal.emit(f"{data['id']}: {data['content']}", 'other')
         elif command == 'product':
             data = eval(''.join(parsed[1:]).strip())
-            print(type(data))
             self.signal.product_signal.emit(data)
         # 대화방 접속자 알림
         elif command == 'enter':
@@ -269,12 +452,15 @@ class MainWindowController(QMainWindow, MainView, TemporaryStorage):
         elif command == 'out':
             list_client = ';'.join(parsed[1:]).strip().split(self.split_1)
             self.friendlistwidget.friend_list.emit(list_client)
-        # 타임라인 기록
-        elif command == 'update':
-            self.signal.chat_signal.emit(' '.join(parsed[1:]).strip(), 'server')
+        # 서버 to 채팅
+        elif command == 'chat':
+            self.signal.chat_signal.emit(self.header_split.join(parsed[1:]).strip(), 'server')
+        # 서버 to 타임라인
+        elif command == 'timeline':
+            self.signal.timeline_siganl.emit(self.header_split.join(parsed[1:]).strip())
         # 관리자 정보
         elif command == 'managerinfo':
-            self.classcenterframe.theSignal.emit(' '.join(parsed[1:]).strip(), False)
+            self.classcenterframe.theSignal.emit(self.header_split.join(parsed[1:]).strip(), False)
         # 연결 종료
         elif command == 'disconnect':
             self.info['socket'][0].close()

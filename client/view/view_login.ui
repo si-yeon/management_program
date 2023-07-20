@@ -37,6 +37,10 @@ background-color: rgb(255, 255, 255);
    </property>
    <item>
     <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">border-top-left-radius: 10px;
+border-top-right-radius: 10px;</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -83,7 +87,7 @@ background-color: rgb(255, 255, 255);
         <property name="styleSheet">
          <string notr="true">QLineEdit{
 border: none; 
-border-bottom: 2px solid #212529;
+border-bottom: 2px solid #164DCA;
 background-color: transparent;
 font-size: 20px;
 }
@@ -127,7 +131,7 @@ font-size: 20px;
         <property name="styleSheet">
          <string notr="true">QLineEdit{
 border: none; 
-border-bottom: 2px solid #212529;
+border-bottom: 2px solid #164DCA;
 background-color: transparent;
 font-size: 20px;
 }
@@ -201,6 +205,10 @@ font-size: 20px;
    </item>
    <item>
     <widget class="QFrame" name="frame_4">
+     <property name="styleSheet">
+      <string notr="true">border-bottom-left-radius: 20px;
+border-bottom-right-radius: 20px;</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -220,18 +228,16 @@ font-size: 20px;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>62</weight>
-          <bold>true</bold>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid #212529;
+         <string notr="true">border: 2px solid #164DCA;
     background-color: #fff;
-    color: #212529;
+    color: #164DCA;
     font-weight: 500;
     font-size: 20px;
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;
+	border-radius: 10px;
 
 </string>
         </property>
@@ -252,18 +258,16 @@ font-size: 20px;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>62</weight>
-          <bold>true</bold>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid #212529;
+         <string notr="true">border: 2px solid #164DCA;
     background-color: #fff;
-    color: #212529;
+    color: #164DCA;
     font-weight: 500;
     font-size: 20px;
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;
+	border-radius: 10px;
 
 </string>
         </property>

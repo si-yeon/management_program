@@ -29,14 +29,14 @@ class RoomController(TempStorage):
 
     # 방에 입장할 때 입장 메시지 전송
     def send_enter_message(self, name):
-        msg = 'update' + self.header_split + name + " 이/가 입장 했습니다."
+        msg = 'chat' + self.header_split + name + " 이/가 입장 했습니다."
         self.send_update(msg)
 
     # 방 접속자 리스트에서 클라이언트 제거
     def remove_client(self, c):
         if c in self._occupants:
             self._occupants.remove(c)
-        m = "update" + self.header_split + c._clientName + " 이/가 퇴장 했습니다."
+        m = "chat" + self.header_split + c._clientName + " 이/가 퇴장 했습니다."
         self.out_send()
         self.send_update(m)
 

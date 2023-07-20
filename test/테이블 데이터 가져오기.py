@@ -42,15 +42,23 @@ class MainWindow(QMainWindow):
     def get_table_data(self):
         print(self.table_widget.currentRow())
 
-        # table_data = []
-        # for row in range(self.table_widget.rowCount()):
-        row_data = []
+        row_data = {}
         for col in range(self.table_widget.columnCount()):
             item = self.table_widget.item(0, col)
             if item is not None:
-                row_data.append(item.text())
+                row_data[self.table_widget.horizontalHeaderItem(col).text()] = item.text()
             else:
-                row_data.append('')
+                row_data[self.table_widget.horizontalHeaderItem(col).text()] = None
+
+        # table_data = []
+        # for row in range(self.table_widget.rowCount()):
+        # row_data = []
+        # for col in range(self.table_widget.columnCount()):
+        #     item = self.table_widget.item(0, col)
+        #     if item is not None:
+        #         row_data.append(item.text())
+        #     else:
+        #         row_data.append('')
         # table_data.append(row_data)
 
         print(row_data)

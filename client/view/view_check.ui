@@ -85,6 +85,9 @@ background-color: rgb(255, 255, 255);
           <pointsize>17</pointsize>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: #164DCA;</string>
+        </property>
         <property name="text">
          <string>메세지</string>
         </property>
@@ -135,18 +138,20 @@ background-color: rgb(255, 255, 255);
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>62</weight>
           <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid #212529;
-    background-color: #fff;
-    color: #212529;
-    font-weight: 500;
-    font-size: 20px;
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;</string>
+         <string notr="true">QPushButton{
+background: #164DCA;
+box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);
+align-items: center;
+color: #fff;
+font-weight: 600;
+font-size: 20px;
+border-radius: 10px;
+padding: 6px;
+}</string>
         </property>
         <property name="text">
          <string>확인</string>
@@ -165,18 +170,20 @@ background-color: rgb(255, 255, 255);
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>62</weight>
           <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid #212529;
-    background-color: #fff;
-    color: #212529;
-    font-weight: 500;
-    font-size: 20px;
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;</string>
+         <string notr="true">QPushButton{
+background: #164DCA;
+box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);
+align-items: center;
+color: #fff;
+font-weight: 600;
+font-size: 20px;
+border-radius: 10px;
+padding: 6px;
+}</string>
         </property>
         <property name="text">
          <string>취소</string>

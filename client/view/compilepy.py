@@ -8,6 +8,7 @@ if __name__ == '__main__':
     name5 = 'view_main'
     name6 = 'view_register'
     name7 = 'view_take'
+    name8 = 'view_name'
 
     os.system(f'python -m PyQt5.uic.pyuic -x {name1}.ui -o {name1}.py')
     os.system(f'python -m PyQt5.uic.pyuic -x {name2}.ui -o {name2}.py')
@@ -16,4 +17,5 @@ if __name__ == '__main__':
     os.system(f'python -m PyQt5.uic.pyuic -x {name5}.ui -o {name5}.py')
     os.system(f'python -m PyQt5.uic.pyuic -x {name6}.ui -o {name6}.py')
     os.system(f'python -m PyQt5.uic.pyuic -x {name7}.ui -o {name7}.py')
+    os.system(f'python -m PyQt5.uic.pyuic -x {name8}.ui -o {name8}.py')
 

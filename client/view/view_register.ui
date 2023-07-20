@@ -21,7 +21,7 @@
        <widget class="QWidget" name="widget" native="true">
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="lb_product_img">
+          <widget class="QLabel" name="img">
            <property name="minimumSize">
             <size>
              <width>140</width>
@@ -53,7 +53,7 @@
        <widget class="QWidget" name="widget_2" native="true">
         <layout class="QGridLayout" name="gridLayout">
          <item row="6" column="1">
-          <widget class="QLineEdit" name="le_inven"/>
+          <widget class="QLineEdit" name="inventory"/>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_4">
@@ -63,7 +63,7 @@
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QLineEdit" name="le_sales"/>
+          <widget class="QLineEdit" name="sales_unit_price"/>
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_6">
@@ -80,7 +80,7 @@
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QLineEdit" name="le_purchase"/>
+          <widget class="QLineEdit" name="purchase_unit_price"/>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_3">
@@ -90,19 +90,16 @@
           </widget>
          </item>
          <item row="7" column="1" rowspan="2">
-          <widget class="QLineEdit" name="le_safety_inven"/>
+          <widget class="QLineEdit" name="safety_inventory"/>
          </item>
          <item row="3" column="1">
-          <widget class="QLineEdit" name="le_name"/>
+          <widget class="QLineEdit" name="name"/>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="le_brand"/>
-         </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="cb_type"/>
+          <widget class="QLineEdit" name="brand"/>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="le_code"/>
+          <widget class="QLineEdit" name="code"/>
          </item>
          <item row="8" column="0">
           <widget class="QLabel" name="label_9">
@@ -131,6 +128,9 @@
             <string>상품명</string>
            </property>
           </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="type"/>
          </item>
         </layout>
        </widget>

@@ -59,7 +59,7 @@ class ServerController(TempStorage):
                 connection_socket, addr = self._serverSocket.accept()
                 new_client = Client(f"Client{len(self.clients) + 1}",
                                     connection_socket, addr, self.main)
-                self.clients.append(new_client)
+                # self.clients.append(new_client)
             else:
                 connection_socket, addr = self._serverSocket.accept()
                 connection_socket.send(("error" + self.header_split + "Server is full").encode("UTF-8"))

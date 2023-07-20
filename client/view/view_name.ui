@@ -6,24 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>296</width>
-    <height>203</height>
+    <width>311</width>
+    <height>180</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>0</width>
-    <height>0</height>
+    <height>180</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>16777215</height>
+    <height>180</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>입고</string>
+   <string>Dialog</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -52,14 +52,8 @@
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>16777215</height>
+       <height>120</height>
       </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>Pretendard</family>
-       <pointsize>6</pointsize>
-      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">QWidget{
@@ -67,7 +61,7 @@ font-family: Pretendard;
 background-color: rgb(255, 255, 255);
 }</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -84,56 +78,22 @@ background-color: rgb(255, 255, 255);
        <number>0</number>
       </property>
       <item alignment="Qt::AlignHCenter">
-       <widget class="QLabel" name="lb_code">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: transparent;
-font-size: 30px;
-text-align: center;
- color: #164DCA;
-
-
-</string>
-        </property>
-        <property name="text">
-         <string>상품코드:</string>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignHCenter">
-       <widget class="QSpinBox" name="sb_num">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
+       <widget class="QLineEdit" name="le_file_name">
         <property name="minimumSize">
          <size>
           <width>200</width>
-          <height>30</height>
+          <height>0</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Pretendard</family>
-          <pointsize>-1</pointsize>
-          <bold>false</bold>
-         </font>
-        </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid #164DCA;
-    background-color: #fff;
-    color: #164DCA;
-    font-weight: 500;
-    font-size: 40px;
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;</string>
+         <string notr="true">    text-align: center;
+    border: 1px solid #164DCA;
+font-size: 20px;
+border: none;
+border-bottom: 2px solid #164DCA;</string>
+        </property>
+        <property name="placeholderText">
+         <string>파일명을 입력해주세요.</string>
         </property>
        </widget>
       </item>
@@ -142,16 +102,10 @@ text-align: center;
    </item>
    <item>
     <widget class="QWidget" name="widget_4" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>60</height>
-      </size>
-     </property>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>16777215</height>
+       <height>60</height>
       </size>
      </property>
      <property name="styleSheet">

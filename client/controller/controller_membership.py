@@ -40,7 +40,7 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
         """
         # 프로필 사진
         self.lb_profile_img.setFixedSize(150, 150)
-        self.img_path = '../../img/profile/who.png'
+        self.img_path = '../img/profile/who.png'
         pixmap = QPixmap(self.img_path)
         self.lb_profile_img.setPixmap(pixmap)
         self.lb_profile_img.setScaledContents(True)
@@ -110,7 +110,7 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
             img_path = filedialog.askopenfilename(initialdir='', title='파일선택', filetypes=(
                 ('png files', '*.png'), ('jpg files', '*.jpg'), ('all files', '*.*')))
             file_name = img_path.split('/')[-1]
-            file_path = f'../../img/profile/{file_name}'
+            file_path = f'../img/profile/{file_name}'
             self.move_image_file(img_path, file_path)
             self.img_path = file_path
             pixmap = QPixmap(self.img_path)
@@ -133,7 +133,7 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
         except FileNotFoundError:
             print("소스 경로에 해당하는 이미지 파일을 찾을 수 없습니다.")
         except Exception as e:
-            self.img_path = '../../img/profile/who.png'
+            self.img_path = '../img/profile/who.png'
             pass
 
     def input_id(self, id: str):
@@ -255,22 +255,13 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
             try:
                 self.dict_info['img'] = self.img_path
             except:
-                self.dict_info['img'] = '../../profile/who.png'
+                self.dict_info['img'] = '../profile/who.png'
 
             json_data = json.dumps(self.dict_info)
             msg = f'join{self.header_split}{json_data}'
-            self._send_json_packet(msg)
+            self.send_json_packet(msg)
         else:
             pass
-
-    def _send_json_packet(self, msg):
-        """
-        제이슨 데이터 보내기
-        :param msg: 제이슨 구조
-        :return:
-        """
-        if self.info['connect']:
-            self.info['socket'][0].send(bytes(msg, 'UTF-8'))
 
 
 if __name__ == "__main__":

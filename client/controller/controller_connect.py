@@ -4,9 +4,10 @@ from socket import *
 
 from PyQt5.QtWidgets import QApplication, QDialog
 
-from client.controller.controller_dialogs import CheckDialog
+from client.controller.controller_check import CheckDialog
 from client.view.view_connect import Ui_Dialog as ConnectView
 from client.storage.temporary_storage import TemporaryStorage
+
 
 class ConnectController(QDialog, ConnectView, TemporaryStorage):
     def __init__(self):
@@ -101,12 +102,6 @@ class ConnectController(QDialog, ConnectView, TemporaryStorage):
                     self._parse_packet(response)
                 except:
                     pass
-
-    def send_packet(self, p):
-        if self.connected:
-            self.client_socket.send(p.encode())
-        else:
-            pass
 
 
 if __name__ == "__main__":

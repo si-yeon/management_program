@@ -9,3 +9,8 @@ class TemporaryStorage:
     split_2 = chr(3)
 
 
+if __name__ == '__main__':
+    t = TemporaryStorage()
+    print(t.header_split)
+    print(t.split_1)
+    print(t.split_2)

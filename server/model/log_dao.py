@@ -2,7 +2,6 @@ import sqlite3
 
 import pandas as pd
 
-
 class LogDAO:
     def __init__(self, db_name='../server/db/data.db'):
         self.conn = sqlite3.connect(db_name)

@@ -4,7 +4,9 @@ import threading
 from server.controller.controller_common import CommonController
 from server.model.chat_dao import ChatDAO
 from server.model.manager_dao import ManagerDAO
-from server.model.clothes_dao import ClothesDAO
+from server.model.product_dao import ProductDAO
+from server.model.take_in_dao import TakeInDAO
+from server.model.take_out_dao import TakeOutDAO
 from server.storage.temp_storage import TempStorage
 
 
@@ -65,12 +67,12 @@ class ClientController(TempStorage, CommonController):
         try:
             while self._exists:
                 packet = self._clientSocket.recv(4096).decode("UTF-8")
-                self._parse_packet(packet)
+                self.parse_packet(packet)
         except Exception as e:
-            self._parse_packet(f'disconnect{self.header_split}')
+            self.parse_packet(f'disconnect{self.header_split}')
             print(e)
 
-    def _parse_packet(self, parce: str):
+    def parse_packet(self, parce: str):
         """
         전달받은 패킷신호 파싱
         :param parce: 패킷신호
@@ -99,6 +101,7 @@ class ClientController(TempStorage, CommonController):
                 self.send_to_client(f'login{self.header_split}{self._clientName}')
                 self.input_log('로그인', f'{self._clientName}({self._clientId}) 이/가 로그인하였습니다.')
                 self._currentRoom.add_client(self)
+                self.clients.append(self)
             elif result == 'wrongpw':
                 print(manager_id, manager_pw)
                 del self.clients[-1]
@@ -112,13 +115,47 @@ class ClientController(TempStorage, CommonController):
             self._currentRoom.send_enter_message(self._clientName)
             print(f"{self._clientName} 이/가 접속 했습니다")
             self.send_product()
-
-
         # 메시지
         elif command == 'message':
             message = self.header_split.join(parsed[1:]).strip()
             self._currentRoom.send_message(self._clientName, message)
             self.input_chat(self._clientId, self._clientName, message)
+        # 갱신
+        elif command == 'renew':
+            self.send_product()
+        # 상품 추가
+        elif command == 'add':
+            product_info = eval(self.header_split.join(parsed[1:]).strip())
+            dao = ProductDAO()
+            dao.insert_product(product_info)
+            dao.close_connection()
+            self.send_product()
+        # 상품 수정, 입고, 출고
+        elif command == 'modify':
+            product_info = eval(self.header_split.join(parsed[1:]).strip())
+            dao = ProductDAO()
+            dao.update_product(product_info)
+            dao.close_connection()
+            self.send_product()
+        # 상품 삭제
+        elif command == 'delete':
+            product_info = eval(self.header_split.join(parsed[1:]).strip())
+            dao = ProductDAO()
+            dao.delete_product(product_info)
+            dao.close_connection()
+            self.send_product()
+        # 상품 입고
+        elif command == 'take_in':
+            info = eval(self.header_split.join(parsed[1:]).strip())
+            dao = TakeInDAO()
+            dao.insert_take_in(info)
+            dao.close_connection()
+        # 상품 출고
+        elif command == 'take_out':
+            info = eval(self.header_split.join(parsed[1:]).strip())
+            dao = TakeOutDAO()
+            dao.insert_take_out(info)
+            dao.close_connection()
         # 접속종료
         elif command == 'disconnect':
             if self._exists:
@@ -129,7 +166,6 @@ class ClientController(TempStorage, CommonController):
                 self._clientSocket.close()
                 self._currentRoom.remove_client(self)
                 self._currentRoom.get_server().remove_client(self)
-
     def get_name_id(self, **manager):
         """
         사원아이디, 사원이름 가져오기
@@ -190,7 +226,7 @@ class ClientController(TempStorage, CommonController):
             client.send_to_client(sending_enter_list)
 
     def send_enter_message(self, name):
-        msg = 'update' + self.header_split + name + " 이/가 입장 했습니다."
+        msg = 'chat' + self.header_split + name + " 이/가 입장 했습니다."
         self.send_update(msg)
 
     def send_update(self, msg):
@@ -218,6 +254,8 @@ class ClientController(TempStorage, CommonController):
 
         dict_data = max_fifty_data.to_dict('records')
 
+        dict_data.reverse()
+
         for data in dict_data:
             json_data = json.dumps(data)
             self.send_json_to_client('log' + self.header_split + json_data)
@@ -227,8 +265,8 @@ class ClientController(TempStorage, CommonController):
         상품 정보 보내기
         :return:
         """
-        dao = ClothesDAO()
-        data = dao.get_all_clothes()
+        dao = ProductDAO()
+        data = dao.get_all_product()
         dao.close_connection()
 
         dict_data = data.to_dict('records')

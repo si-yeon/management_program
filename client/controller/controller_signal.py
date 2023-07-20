@@ -15,4 +15,6 @@ class SignalController(QObject):
     chat_signal = pyqtSignal(str, str)
     # 상품 정보 업데이트
     product_signal = pyqtSignal(dict)
+    # 타임라인
+    timeline_siganl = pyqtSignal(str, str)
 

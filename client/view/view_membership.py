@@ -14,24 +14,34 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(555, 329)
+        Dialog.resize(555, 312)
         Dialog.setStyleSheet("font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(Dialog)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_2.setSpacing(6)
+        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.widget_2 = QtWidgets.QWidget(Dialog)
+        self.widget_2.setStyleSheet("QWidget{\n"
+"border: 2px solid #164DCA;\n"
+"border-top-left-radius: 15px;\n"
+"border-top-right-radius: 15px;\n"
+"border-bottom:none;\n"
+"}\n"
+"QFrame{\n"
+"border: none;\n"
+"border-radius: 0px;\n"
+"}")
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.widget_2)
-        self.horizontalLayout_8.setContentsMargins(0, 10, 0, 0)
+        self.horizontalLayout_8.setContentsMargins(9, 9, 9, 0)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.frame = QtWidgets.QFrame(self.widget_2)
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame)
-        self.verticalLayout_4.setContentsMargins(30, 0, 0, 0)
+        self.verticalLayout_4.setContentsMargins(30, 0, 0, 10)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.verticalFrame = QtWidgets.QFrame(self.frame)
@@ -43,7 +53,7 @@ class Ui_Dialog(object):
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.lb_profile_img = QtWidgets.QLabel(self.verticalFrame)
         self.lb_profile_img.setMinimumSize(QtCore.QSize(150, 180))
-        self.lb_profile_img.setStyleSheet("border: 2px solid #212529;")
+        self.lb_profile_img.setStyleSheet("border: 2px dashed  #164DCA;")
         self.lb_profile_img.setText("")
         self.lb_profile_img.setObjectName("lb_profile_img")
         self.verticalLayout_7.addWidget(self.lb_profile_img, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
@@ -55,12 +65,17 @@ class Ui_Dialog(object):
         sizePolicy.setHeightForWidth(self.pb_regist_img.sizePolicy().hasHeightForWidth())
         self.pb_regist_img.setSizePolicy(sizePolicy)
         self.pb_regist_img.setMinimumSize(QtCore.QSize(100, 30))
-        self.pb_regist_img.setMaximumSize(QtCore.QSize(16777215, 30))
-        self.pb_regist_img.setStyleSheet("background:  #212529;\n"
-"    color: #ffffff;\n"
-"    font-weight: 500;\n"
-" border-radius: 0.5rem;\n"
-"    font-size: 20px;")
+        self.pb_regist_img.setMaximumSize(QtCore.QSize(16777215, 35))
+        self.pb_regist_img.setStyleSheet("QPushButton{\n"
+"background: #164DCA;\n"
+"box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);\n"
+"align-items: center;\n"
+"color: #fff;\n"
+"font-weight: 600;\n"
+"font-size: 20px;\n"
+"border-radius: 10px;\n"
+"padding: 6px;\n"
+"}")
         self.pb_regist_img.setObjectName("pb_regist_img")
         self.verticalLayout_4.addWidget(self.pb_regist_img, 0, QtCore.Qt.AlignHCenter)
         self.horizontalLayout_8.addWidget(self.frame)
@@ -83,9 +98,9 @@ class Ui_Dialog(object):
         self.le_id.setMinimumSize(QtCore.QSize(0, 35))
         self.le_id.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-top: 2px solid #212529;\n"
-"border-left: 2px solid #212529;\n"
-"border-right: 2px solid #212529;\n"
+"border-top: 2px solid  #164DCA;\n"
+"border-left: 2px solid  #164DCA;\n"
+"border-right: 2px solid  #164DCA;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "}\n"
@@ -107,9 +122,9 @@ class Ui_Dialog(object):
         self.le_pw.setMinimumSize(QtCore.QSize(0, 35))
         self.le_pw.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-top: 2px solid #212529;\n"
-"border-left: 2px solid #212529;\n"
-"border-right: 2px solid #212529;\n"
+"border-top: 2px solid  #164DCA;\n"
+"border-left: 2px solid  #164DCA;\n"
+"border-right: 2px solid  #164DCA;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "}\n"
@@ -131,9 +146,9 @@ class Ui_Dialog(object):
         self.le_name.setMinimumSize(QtCore.QSize(0, 35))
         self.le_name.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-top: 2px solid #212529;\n"
-"border-left: 2px solid #212529;\n"
-"border-right: 2px solid #212529;\n"
+"border-top: 2px solid  #164DCA;\n"
+"border-left: 2px solid  #164DCA;\n"
+"border-right: 2px solid  #164DCA;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "}\n"
@@ -155,9 +170,9 @@ class Ui_Dialog(object):
         self.le_depart.setMinimumSize(QtCore.QSize(0, 35))
         self.le_depart.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-top: 2px solid #212529;\n"
-"border-left: 2px solid #212529;\n"
-"border-right: 2px solid #212529;\n"
+"border-top: 2px solid  #164DCA;\n"
+"border-left: 2px solid  #164DCA;\n"
+"border-right: 2px solid  #164DCA;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "}\n"
@@ -179,9 +194,9 @@ class Ui_Dialog(object):
         self.le_position.setMinimumSize(QtCore.QSize(0, 35))
         self.le_position.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-top: 2px solid #212529;\n"
-"border-left: 2px solid #212529;\n"
-"border-right: 2px solid #212529;\n"
+"border-top: 2px solid  #164DCA;\n"
+"border-left: 2px solid  #164DCA;\n"
+"border-right: 2px solid  #164DCA;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "}\n"
@@ -201,9 +216,11 @@ class Ui_Dialog(object):
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.lw_msg = QtWidgets.QListWidget(self.frame_6)
         self.lw_msg.setMinimumSize(QtCore.QSize(0, 35))
-        self.lw_msg.setStyleSheet("border-bottom: 2px solid #212529;\n"
-"border-left: 2px solid #212529;\n"
-"border-right: 2px solid #212529;\n"
+        self.lw_msg.setStyleSheet("border-bottom: 2px solid  #164DCA;\n"
+"border-left: 2px solid  #164DCA;\n"
+"border-right: 2px solid  #164DCA;\n"
+"border-bottom-left-radius: 20px;\n"
+"border-bottom-right-radius: 20px;\n"
 "background-color: transparent;")
         self.lw_msg.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.lw_msg.setFrameShadow(QtWidgets.QFrame.Plain)
@@ -212,42 +229,48 @@ class Ui_Dialog(object):
         self.verticalLayout.addWidget(self.frame_6)
         self.horizontalLayout_8.addWidget(self.widget)
         self.verticalLayout_2.addWidget(self.widget_2)
-        self.frame_4 = QtWidgets.QFrame(Dialog)
-        self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_4.setObjectName("frame_4")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame_4)
+        self.widget_4 = QtWidgets.QWidget(Dialog)
+        self.widget_4.setStyleSheet("QWidget{\n"
+"border: 2px solid #164DCA;\n"
+"border-bottom-left-radius: 15px;\n"
+"border-bottom-right-radius: 15px;\n"
+"border-top:none;\n"
+"}")
+        self.widget_4.setObjectName("widget_4")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget_4)
         self.horizontalLayout_2.setContentsMargins(9, 9, 9, 9)
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.pb_join = QtWidgets.QPushButton(self.frame_4)
+        self.pb_join = QtWidgets.QPushButton(self.widget_4)
         self.pb_join.setMinimumSize(QtCore.QSize(100, 40))
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(False)
+        font.setBold(True)
+        font.setWeight(62)
         self.pb_join.setFont(font)
-        self.pb_join.setStyleSheet("border: 2px solid #212529;\n"
+        self.pb_join.setStyleSheet("border: 2px solid #164DCA;\n"
 "    background-color: #fff;\n"
-"    color: #212529;\n"
+"    color: #164DCA;\n"
 "    font-weight: 500;\n"
 "    font-size: 20px;\n"
-"    border-top-left-radius: 0.3rem;\n"
-"    border-top-right-radius: 0.3rem;\n"
+"    border-radius: 0.5rem;\n"
+"\n"
 "\n"
 "")
         self.pb_join.setObjectName("pb_join")
         self.horizontalLayout_2.addWidget(self.pb_join, 0, QtCore.Qt.AlignHCenter)
-        self.pb_member = QtWidgets.QPushButton(self.frame_4)
+        self.pb_member = QtWidgets.QPushButton(self.widget_4)
         self.pb_member.setMinimumSize(QtCore.QSize(100, 40))
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(False)
+        font.setBold(True)
+        font.setWeight(62)
         self.pb_member.setFont(font)
-        self.pb_member.setStyleSheet("border: 2px solid #212529;\n"
+        self.pb_member.setStyleSheet("border: 2px solid #164DCA;\n"
 "    background-color: #fff;\n"
-"    color: #212529;\n"
+"    color: #164DCA;\n"
 "    font-weight: 500;\n"
 "    font-size: 20px;\n"
 "    border-radius: 0.5rem;\n"
@@ -256,7 +279,7 @@ class Ui_Dialog(object):
 "")
         self.pb_member.setObjectName("pb_member")
         self.horizontalLayout_2.addWidget(self.pb_member, 0, QtCore.Qt.AlignHCenter)
-        self.verticalLayout_2.addWidget(self.frame_4)
+        self.verticalLayout_2.addWidget(self.widget_4)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)

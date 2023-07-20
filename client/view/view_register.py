@@ -14,29 +14,92 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(517, 320)
+        Dialog.resize(613, 383)
+        Dialog.setStyleSheet("font-family: Pretendard;\n"
+"background-color: rgb(255, 255, 255);")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(Dialog)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.widget_3 = QtWidgets.QWidget(Dialog)
+        self.widget_3.setStyleSheet("QWidget{\n"
+"font-family: Pretendard;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-top-left-radius: 15px;\n"
+"border-top-right-radius: 15px;\n"
+"border-bottom:none;\n"
+"}\n"
+"\n"
+"QLineEdit{\n"
+"border: none; \n"
+"border-bottom: 2px solid #164DCA;\n"
+"background-color: transparent;\n"
+"font-size: 20px;\n"
+"text-align: center;\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"font-size: 20px;\n"
+"}")
         self.widget_3.setObjectName("widget_3")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget_3)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.widget = QtWidgets.QWidget(self.widget_3)
+        self.widget.setStyleSheet("border: none;\n"
+"border-radius: 0;")
         self.widget.setObjectName("widget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
         self.verticalLayout.setObjectName("verticalLayout")
         self.img = QtWidgets.QLabel(self.widget)
         self.img.setMinimumSize(QtCore.QSize(140, 160))
         self.img.setMaximumSize(QtCore.QSize(140, 160))
+        self.img.setStyleSheet("border: 2px dashed  #164DCA;")
         self.img.setObjectName("img")
         self.verticalLayout.addWidget(self.img)
         self.pb_load = QtWidgets.QPushButton(self.widget)
+        self.pb_load.setStyleSheet("QPushButton{\n"
+"background: #164DCA;\n"
+"box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);\n"
+"align-items: center;\n"
+"color: #fff;\n"
+"font-weight: 600;\n"
+"font-size: 20px;\n"
+"border-radius: 10px;\n"
+"padding: 6px;\n"
+"}")
         self.pb_load.setObjectName("pb_load")
-        self.verticalLayout.addWidget(self.pb_load)
+        self.verticalLayout.addWidget(self.pb_load, 0, QtCore.Qt.AlignHCenter)
         self.horizontalLayout.addWidget(self.widget)
         self.widget_2 = QtWidgets.QWidget(self.widget_3)
+        self.widget_2.setStyleSheet("QWidget{\n"
+"border: none;\n"
+"border-radius: 20;\n"
+"    background-color: rgb(247, 247, 247);\n"
+"border: 2px solid #164DCA;\n"
+"border-radius: 15px;\n"
+"}\n"
+"\n"
+"QLineEdit{\n"
+"border: none; \n"
+"border-bottom: 2px solid #164DCA;\n"
+"background-color: transparent;\n"
+"font-size: 20px;\n"
+"text-align: center;\n"
+"}\n"
+"\n"
+"QLabel{\n"
+"font-size: 20px;\n"
+"border:none;\n"
+"border-radius:0;\n"
+"font-weight:300;\n"
+"}\n"
+"")
         self.widget_2.setObjectName("widget_2")
         self.gridLayout = QtWidgets.QGridLayout(self.widget_2)
+        self.gridLayout.setContentsMargins(10, 15, 15, 15)
+        self.gridLayout.setHorizontalSpacing(20)
+        self.gridLayout.setVerticalSpacing(10)
         self.gridLayout.setObjectName("gridLayout")
         self.inventory = QtWidgets.QLineEdit(self.widget_2)
         self.inventory.setObjectName("inventory")
@@ -89,28 +152,61 @@ class Ui_Dialog(object):
         self.horizontalLayout.addWidget(self.widget_2)
         self.verticalLayout_2.addWidget(self.widget_3)
         self.widget_4 = QtWidgets.QWidget(Dialog)
+        self.widget_4.setStyleSheet("QWidget{\n"
+"font-family: Pretendard;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-bottom-left-radius: 15px;\n"
+"border-bottom-right-radius: 15px;\n"
+"border-top:none;\n"
+"}\n"
+"QPushButton{\n"
+"background: #164DCA;\n"
+"box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);\n"
+"align-items: center;\n"
+"color: #fff;\n"
+"font-weight: 600;\n"
+"font-size: 20px;\n"
+"border-radius: 10px;\n"
+"padding: 6px;\n"
+"}\n"
+"")
         self.widget_4.setObjectName("widget_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget_4)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.pb_save = QtWidgets.QPushButton(self.widget_4)
+        self.pb_save.setMinimumSize(QtCore.QSize(75, 30))
         self.pb_save.setObjectName("pb_save")
         self.horizontalLayout_2.addWidget(self.pb_save, 0, QtCore.Qt.AlignHCenter)
         self.pb_reset = QtWidgets.QPushButton(self.widget_4)
+        self.pb_reset.setMinimumSize(QtCore.QSize(75, 30))
         self.pb_reset.setObjectName("pb_reset")
         self.horizontalLayout_2.addWidget(self.pb_reset, 0, QtCore.Qt.AlignHCenter)
         self.pb_close = QtWidgets.QPushButton(self.widget_4)
+        self.pb_close.setMinimumSize(QtCore.QSize(75, 30))
         self.pb_close.setObjectName("pb_close")
         self.horizontalLayout_2.addWidget(self.pb_close, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout_2.addWidget(self.widget_4)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+        Dialog.setTabOrder(self.code, self.type)
+        Dialog.setTabOrder(self.type, self.brand)
+        Dialog.setTabOrder(self.brand, self.name)
+        Dialog.setTabOrder(self.name, self.purchase_unit_price)
+        Dialog.setTabOrder(self.purchase_unit_price, self.sales_unit_price)
+        Dialog.setTabOrder(self.sales_unit_price, self.inventory)
+        Dialog.setTabOrder(self.inventory, self.safety_inventory)
+        Dialog.setTabOrder(self.safety_inventory, self.pb_load)
+        Dialog.setTabOrder(self.pb_load, self.pb_save)
+        Dialog.setTabOrder(self.pb_save, self.pb_reset)
+        Dialog.setTabOrder(self.pb_reset, self.pb_close)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.img.setText(_translate("Dialog", "이미지"))
-        self.pb_load.setText(_translate("Dialog", "불러오기"))
+        self.pb_load.setText(_translate("Dialog", "사진등록"))
         self.label_4.setText(_translate("Dialog", "분류"))
         self.label_6.setText(_translate("Dialog", "구매단가"))
         self.label_8.setText(_translate("Dialog", "재고"))

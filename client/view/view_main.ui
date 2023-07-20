@@ -30,7 +30,7 @@ box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);
 align-items: center;
 color: #fff;
 font-weight: 600;
-font-size: 15px;
+font-size: 20px;
 border-radius: 10px;
 padding: 6px;
 }</string>
@@ -125,6 +125,9 @@ padding: 6px;
                 <height>0</height>
                </size>
               </property>
+              <property name="toolTip">
+               <string>채팅</string>
+              </property>
               <property name="styleSheet">
                <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
               </property>
@@ -153,6 +156,9 @@ padding: 6px;
               <height>0</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>타임라인</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
             </property>
@@ -179,6 +185,9 @@ padding: 6px;
               <height>0</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>내 정보</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
             </property>
@@ -204,6 +213,9 @@ padding: 6px;
               <width>0</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="toolTip">
+             <string>로그아웃</string>
             </property>
             <property name="styleSheet">
              <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
@@ -906,7 +918,7 @@ border-bottom-left-radius: 0px;</string>
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">

@@ -31,6 +31,10 @@ class Ui_Dialog(object):
         self.widget_2.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-top-left-radius: 15px;\n"
+"border-top-right-radius: 15px;\n"
+"border-bottom:none;\n"
 "}")
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_2)
@@ -38,10 +42,10 @@ class Ui_Dialog(object):
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.le_file_name = QtWidgets.QLineEdit(self.widget_2)
-        self.le_file_name.setMinimumSize(QtCore.QSize(200, 0))
+        self.le_file_name.setMinimumSize(QtCore.QSize(250, 0))
         self.le_file_name.setStyleSheet("    text-align: center;\n"
 "    border: 1px solid #164DCA;\n"
-"font-size: 20px;\n"
+"font-size: 23px;\n"
 "border: none;\n"
 "border-bottom: 2px solid #164DCA;")
         self.le_file_name.setObjectName("le_file_name")
@@ -52,6 +56,10 @@ class Ui_Dialog(object):
         self.widget_4.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-bottom-left-radius: 15px;\n"
+"border-bottom-right-radius: 15px;\n"
+"border-top:none;\n"
 "}")
         self.widget_4.setObjectName("widget_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget_4)
@@ -64,6 +72,7 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
+        font.setWeight(75)
         self.pb_check.setFont(font)
         self.pb_check.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"
@@ -83,6 +92,7 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
+        font.setWeight(75)
         self.pb_cancel.setFont(font)
         self.pb_cancel.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"

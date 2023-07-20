@@ -59,6 +59,10 @@
       <string notr="true">QWidget{
 font-family: Pretendard;
 background-color: rgb(255, 255, 255);
+border: 2px solid #164DCA;
+border-top-left-radius: 15px;
+border-top-right-radius: 15px;
+border-bottom:none;
 }</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -77,16 +81,24 @@ background-color: rgb(255, 255, 255);
       <property name="bottomMargin">
        <number>0</number>
       </property>
-      <item alignment="Qt::AlignHCenter">
+      <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QLabel" name="lb_msg">
         <property name="font">
          <font>
           <family>Pretendard</family>
-          <pointsize>17</pointsize>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: #164DCA;</string>
+         <string notr="true">background-color: transparent;
+font-size: 30px;
+text-align: center;
+ color: #164DCA;
+border: none;
+border-radius: 0;
+
+
+</string>
         </property>
         <property name="text">
          <string>메세지</string>
@@ -108,6 +120,10 @@ background-color: rgb(255, 255, 255);
       <string notr="true">QWidget{
 font-family: Pretendard;
 background-color: rgb(255, 255, 255);
+border: 2px solid #164DCA;
+border-bottom-left-radius: 15px;
+border-bottom-right-radius: 15px;
+border-top:none;
 }</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -138,6 +154,7 @@ background-color: rgb(255, 255, 255);
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
+          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -170,6 +187,7 @@ padding: 6px;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
+          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>

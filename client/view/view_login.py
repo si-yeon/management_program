@@ -18,22 +18,41 @@ class Ui_Form(object):
         Form.setStyleSheet("font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
 "\n"
+"\n"
+"QFrame{\n"
+"border: 2px solid #164DCA;\n"
+"}\n"
+"\n"
 "")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.frame = QtWidgets.QFrame(Form)
+        self.frame.setStyleSheet("QFrame{\n"
+"border: 2px solid #164DCA;\n"
+"border-top-left-radius: 15px;\n"
+"border-top-right-radius: 15px;\n"
+"border-bottom:none;\n"
+"}\n"
+"")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.lb_logo = QtWidgets.QLabel(self.frame)
+        self.lb_logo.setStyleSheet("border:none;")
         self.lb_logo.setObjectName("lb_logo")
         self.verticalLayout_3.addWidget(self.lb_logo, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout_2.addWidget(self.frame)
         self.frame_2 = QtWidgets.QFrame(Form)
+        self.frame_2.setStyleSheet("QFrame{\n"
+"border: 2px solid #164DCA;\n"
+"border-top:none;\n"
+"border-bottom:none;\n"
+"}\n"
+"")
         self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
@@ -44,7 +63,7 @@ class Ui_Form(object):
         self.le_id = QtWidgets.QLineEdit(self.frame_2)
         self.le_id.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-bottom: 2px solid #212529;\n"
+"border-bottom: 2px solid #164DCA;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "}\n"
@@ -55,6 +74,12 @@ class Ui_Form(object):
         self.verticalLayout_4.addWidget(self.le_id)
         self.verticalLayout_2.addWidget(self.frame_2)
         self.frame_3 = QtWidgets.QFrame(Form)
+        self.frame_3.setStyleSheet("QFrame{\n"
+"border: 2px solid #164DCA;\n"
+"border-top:none;\n"
+"border-bottom:none;\n"
+"}\n"
+"")
         self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_3.setObjectName("frame_3")
@@ -65,7 +90,7 @@ class Ui_Form(object):
         self.le_pw = QtWidgets.QLineEdit(self.frame_3)
         self.le_pw.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-bottom: 2px solid #212529;\n"
+"border-bottom: 2px solid #164DCA;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "}\n"
@@ -77,17 +102,30 @@ class Ui_Form(object):
         self.verticalLayout_2.addWidget(self.frame_3)
         self.frame_6 = QtWidgets.QFrame(Form)
         self.frame_6.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.frame_6.setStyleSheet("QFrame{\n"
+"border: 2px solid #164DCA;\n"
+"border-top:none;\n"
+"border-bottom:none;\n"
+"}\n"
+"")
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.frame_6)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.lb_warning = QtWidgets.QLabel(self.frame_6)
+        self.lb_warning.setStyleSheet("border: none;")
         self.lb_warning.setText("")
         self.lb_warning.setObjectName("lb_warning")
         self.verticalLayout_6.addWidget(self.lb_warning, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout_2.addWidget(self.frame_6)
         self.frame_5 = QtWidgets.QFrame(Form)
+        self.frame_5.setStyleSheet("QFrame{\n"
+"border: 2px solid #164DCA;\n"
+"border-top:none;\n"
+"border-bottom:none;\n"
+"}\n"
+"")
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
@@ -103,6 +141,13 @@ class Ui_Form(object):
         self.horizontalLayout.addWidget(self.cb_remember_id, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout_2.addWidget(self.frame_5)
         self.frame_4 = QtWidgets.QFrame(Form)
+        self.frame_4.setStyleSheet("QFrame{\n"
+"border: 2px solid #164DCA;\n"
+"border-bottom-left-radius: 15px;\n"
+"border-bottom-right-radius: 15px;\n"
+"border-top:none;\n"
+"}\n"
+"")
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
@@ -116,13 +161,12 @@ class Ui_Form(object):
         font.setBold(True)
         font.setWeight(62)
         self.pb_login.setFont(font)
-        self.pb_login.setStyleSheet("border: 2px solid #212529;\n"
+        self.pb_login.setStyleSheet("border: 2px solid #164DCA;\n"
 "    background-color: #fff;\n"
-"    color: #212529;\n"
+"    color: #164DCA;\n"
 "    font-weight: 500;\n"
 "    font-size: 20px;\n"
-"    border-top-left-radius: 0.3rem;\n"
-"    border-top-right-radius: 0.3rem;\n"
+"    border-radius: 10px;\n"
 "\n"
 "")
         self.pb_login.setObjectName("pb_login")
@@ -135,13 +179,12 @@ class Ui_Form(object):
         font.setBold(True)
         font.setWeight(62)
         self.pb_member.setFont(font)
-        self.pb_member.setStyleSheet("border: 2px solid #212529;\n"
+        self.pb_member.setStyleSheet("border: 2px solid #164DCA;\n"
 "    background-color: #fff;\n"
-"    color: #212529;\n"
+"    color: #164DCA;\n"
 "    font-weight: 500;\n"
 "    font-size: 20px;\n"
-"    border-top-left-radius: 0.3rem;\n"
-"    border-top-right-radius: 0.3rem;\n"
+"    border-radius: 10px;\n"
 "\n"
 "")
         self.pb_member.setObjectName("pb_member")

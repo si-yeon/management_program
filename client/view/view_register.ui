@@ -6,19 +6,64 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>517</width>
-    <height>320</height>
+    <width>613</width>
+    <height>383</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">font-family: Pretendard;
+background-color: rgb(255, 255, 255);</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QWidget" name="widget_3" native="true">
+     <property name="styleSheet">
+      <string notr="true">QWidget{
+font-family: Pretendard;
+background-color: rgb(255, 255, 255);
+border: 2px solid #164DCA;
+border-top-left-radius: 15px;
+border-top-right-radius: 15px;
+border-bottom:none;
+}
+
+QLineEdit{
+border: none; 
+border-bottom: 2px solid #164DCA;
+background-color: transparent;
+font-size: 20px;
+text-align: center;
+}
+
+QLabel{
+font-size: 20px;
+}</string>
+     </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QWidget" name="widget" native="true">
+        <property name="styleSheet">
+         <string notr="true">border: none;
+border-radius: 0;</string>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
           <widget class="QLabel" name="img">
@@ -34,15 +79,30 @@
              <height>160</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">border: 2px dashed  #164DCA;</string>
+           </property>
            <property name="text">
             <string>이미지</string>
            </property>
           </widget>
          </item>
-         <item>
+         <item alignment="Qt::AlignHCenter">
           <widget class="QPushButton" name="pb_load">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+background: #164DCA;
+box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);
+align-items: center;
+color: #fff;
+font-weight: 600;
+font-size: 20px;
+border-radius: 10px;
+padding: 6px;
+}</string>
+           </property>
            <property name="text">
-            <string>불러오기</string>
+            <string>사진등록</string>
            </property>
           </widget>
          </item>
@@ -51,7 +111,50 @@
       </item>
       <item>
        <widget class="QWidget" name="widget_2" native="true">
+        <property name="styleSheet">
+         <string notr="true">QWidget{
+border: none;
+border-radius: 20;
+	background-color: rgb(247, 247, 247);
+border: 2px solid #164DCA;
+border-radius: 15px;
+}
+
+QLineEdit{
+border: none; 
+border-bottom: 2px solid #164DCA;
+background-color: transparent;
+font-size: 20px;
+text-align: center;
+}
+
+QLabel{
+font-size: 20px;
+border:none;
+border-radius:0;
+font-weight:300;
+}
+</string>
+        </property>
         <layout class="QGridLayout" name="gridLayout">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="topMargin">
+          <number>15</number>
+         </property>
+         <property name="rightMargin">
+          <number>15</number>
+         </property>
+         <property name="bottomMargin">
+          <number>15</number>
+         </property>
+         <property name="horizontalSpacing">
+          <number>20</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>10</number>
+         </property>
          <item row="6" column="1">
           <widget class="QLineEdit" name="inventory"/>
          </item>
@@ -140,9 +243,36 @@
    </item>
    <item>
     <widget class="QWidget" name="widget_4" native="true">
+     <property name="styleSheet">
+      <string notr="true">QWidget{
+font-family: Pretendard;
+background-color: rgb(255, 255, 255);
+border: 2px solid #164DCA;
+border-bottom-left-radius: 15px;
+border-bottom-right-radius: 15px;
+border-top:none;
+}
+QPushButton{
+background: #164DCA;
+box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);
+align-items: center;
+color: #fff;
+font-weight: 600;
+font-size: 20px;
+border-radius: 10px;
+padding: 6px;
+}
+</string>
+     </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item alignment="Qt::AlignHCenter">
        <widget class="QPushButton" name="pb_save">
+        <property name="minimumSize">
+         <size>
+          <width>75</width>
+          <height>30</height>
+         </size>
+        </property>
         <property name="text">
          <string>저장</string>
         </property>
@@ -150,6 +280,12 @@
       </item>
       <item alignment="Qt::AlignHCenter">
        <widget class="QPushButton" name="pb_reset">
+        <property name="minimumSize">
+         <size>
+          <width>75</width>
+          <height>30</height>
+         </size>
+        </property>
         <property name="text">
          <string>다시작성</string>
         </property>
@@ -157,6 +293,12 @@
       </item>
       <item alignment="Qt::AlignHCenter">
        <widget class="QPushButton" name="pb_close">
+        <property name="minimumSize">
+         <size>
+          <width>75</width>
+          <height>30</height>
+         </size>
+        </property>
         <property name="text">
          <string>닫기</string>
         </property>
@@ -167,6 +309,20 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>code</tabstop>
+  <tabstop>type</tabstop>
+  <tabstop>brand</tabstop>
+  <tabstop>name</tabstop>
+  <tabstop>purchase_unit_price</tabstop>
+  <tabstop>sales_unit_price</tabstop>
+  <tabstop>inventory</tabstop>
+  <tabstop>safety_inventory</tabstop>
+  <tabstop>pb_load</tabstop>
+  <tabstop>pb_save</tabstop>
+  <tabstop>pb_reset</tabstop>
+  <tabstop>pb_close</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

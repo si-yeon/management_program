@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>555</width>
-    <height>329</height>
+    <height>312</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@ background-color: rgb(255, 255, 255);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
-    <number>6</number>
+    <number>0</number>
    </property>
    <property name="leftMargin">
     <number>0</number>
@@ -35,15 +35,27 @@ background-color: rgb(255, 255, 255);</string>
    </property>
    <item>
     <widget class="QWidget" name="widget_2" native="true">
+     <property name="styleSheet">
+      <string notr="true">QWidget{
+border: 2px solid #164DCA;
+border-top-left-radius: 15px;
+border-top-right-radius: 15px;
+border-bottom:none;
+}
+QFrame{
+border: none;
+border-radius: 0px;
+}</string>
+     </property>
      <layout class="QHBoxLayout" name="horizontalLayout_8">
       <property name="leftMargin">
-       <number>0</number>
+       <number>9</number>
       </property>
       <property name="topMargin">
-       <number>10</number>
+       <number>9</number>
       </property>
       <property name="rightMargin">
-       <number>0</number>
+       <number>9</number>
       </property>
       <property name="bottomMargin">
        <number>0</number>
@@ -70,7 +82,7 @@ background-color: rgb(255, 255, 255);</string>
           <number>0</number>
          </property>
          <property name="bottomMargin">
-          <number>0</number>
+          <number>10</number>
          </property>
          <item alignment="Qt::AlignHCenter">
           <widget class="QFrame" name="verticalFrame">
@@ -105,7 +117,7 @@ background-color: rgb(255, 255, 255);</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">border: 2px solid #212529;</string>
+               <string notr="true">border: 2px dashed  #164DCA;</string>
               </property>
               <property name="text">
                <string/>
@@ -132,15 +144,20 @@ background-color: rgb(255, 255, 255);</string>
            <property name="maximumSize">
             <size>
              <width>16777215</width>
-             <height>30</height>
+             <height>35</height>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background:  #212529;
-    color: #ffffff;
-    font-weight: 500;
- border-radius: 0.5rem;
-    font-size: 20px;</string>
+            <string notr="true">QPushButton{
+background: #164DCA;
+box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);
+align-items: center;
+color: #fff;
+font-weight: 600;
+font-size: 20px;
+border-radius: 10px;
+padding: 6px;
+}</string>
            </property>
            <property name="text">
             <string>사진등록</string>
@@ -209,9 +226,9 @@ background-color: rgb(255, 255, 255);</string>
               <property name="styleSheet">
                <string notr="true">QLineEdit{
 border: none; 
-border-top: 2px solid #212529;
-border-left: 2px solid #212529;
-border-right: 2px solid #212529;
+border-top: 2px solid  #164DCA;
+border-left: 2px solid  #164DCA;
+border-right: 2px solid  #164DCA;
 background-color: transparent;
 font-size: 20px;
 }
@@ -269,9 +286,9 @@ font-size: 20px;
               <property name="styleSheet">
                <string notr="true">QLineEdit{
 border: none; 
-border-top: 2px solid #212529;
-border-left: 2px solid #212529;
-border-right: 2px solid #212529;
+border-top: 2px solid  #164DCA;
+border-left: 2px solid  #164DCA;
+border-right: 2px solid  #164DCA;
 background-color: transparent;
 font-size: 20px;
 }
@@ -329,9 +346,9 @@ font-size: 20px;
               <property name="styleSheet">
                <string notr="true">QLineEdit{
 border: none; 
-border-top: 2px solid #212529;
-border-left: 2px solid #212529;
-border-right: 2px solid #212529;
+border-top: 2px solid  #164DCA;
+border-left: 2px solid  #164DCA;
+border-right: 2px solid  #164DCA;
 background-color: transparent;
 font-size: 20px;
 }
@@ -389,9 +406,9 @@ font-size: 20px;
               <property name="styleSheet">
                <string notr="true">QLineEdit{
 border: none; 
-border-top: 2px solid #212529;
-border-left: 2px solid #212529;
-border-right: 2px solid #212529;
+border-top: 2px solid  #164DCA;
+border-left: 2px solid  #164DCA;
+border-right: 2px solid  #164DCA;
 background-color: transparent;
 font-size: 20px;
 }
@@ -449,9 +466,9 @@ font-size: 20px;
               <property name="styleSheet">
                <string notr="true">QLineEdit{
 border: none; 
-border-top: 2px solid #212529;
-border-left: 2px solid #212529;
-border-right: 2px solid #212529;
+border-top: 2px solid  #164DCA;
+border-left: 2px solid  #164DCA;
+border-right: 2px solid  #164DCA;
 background-color: transparent;
 font-size: 20px;
 }
@@ -504,9 +521,11 @@ font-size: 20px;
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">border-bottom: 2px solid #212529;
-border-left: 2px solid #212529;
-border-right: 2px solid #212529;
+               <string notr="true">border-bottom: 2px solid  #164DCA;
+border-left: 2px solid  #164DCA;
+border-right: 2px solid  #164DCA;
+border-bottom-left-radius: 20px;
+border-bottom-right-radius: 20px;
 background-color: transparent;</string>
               </property>
               <property name="frameShape">
@@ -527,12 +546,14 @@ background-color: transparent;</string>
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="frame_4">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+    <widget class="QWidget" name="widget_4" native="true">
+     <property name="styleSheet">
+      <string notr="true">QWidget{
+border: 2px solid #164DCA;
+border-bottom-left-radius: 15px;
+border-bottom-right-radius: 15px;
+border-top:none;
+}</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="spacing">
@@ -562,17 +583,18 @@ background-color: transparent;</string>
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <bold>false</bold>
+          <weight>62</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid #212529;
+         <string notr="true">border: 2px solid #164DCA;
     background-color: #fff;
-    color: #212529;
+    color: #164DCA;
     font-weight: 500;
     font-size: 20px;
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;
+    border-radius: 0.5rem;
+
 
 </string>
         </property>
@@ -593,13 +615,14 @@ background-color: transparent;</string>
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <bold>false</bold>
+          <weight>62</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid #212529;
+         <string notr="true">border: 2px solid #164DCA;
     background-color: #fff;
-    color: #212529;
+    color: #164DCA;
     font-weight: 500;
     font-size: 20px;
     border-radius: 0.5rem;

@@ -17,6 +17,11 @@
    <string notr="true">font-family: Pretendard;
 background-color: rgb(255, 255, 255);
 
+
+QFrame{
+border: 2px solid #164DCA;
+}
+
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -38,8 +43,13 @@ background-color: rgb(255, 255, 255);
    <item>
     <widget class="QFrame" name="frame">
      <property name="styleSheet">
-      <string notr="true">border-top-left-radius: 10px;
-border-top-right-radius: 10px;</string>
+      <string notr="true">QFrame{
+border: 2px solid #164DCA;
+border-top-left-radius: 15px;
+border-top-right-radius: 15px;
+border-bottom:none;
+}
+</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -50,6 +60,9 @@ border-top-right-radius: 10px;</string>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item alignment="Qt::AlignHCenter">
        <widget class="QLabel" name="lb_logo">
+        <property name="styleSheet">
+         <string notr="true">border:none;</string>
+        </property>
         <property name="text">
          <string>LOGO</string>
         </property>
@@ -60,6 +73,14 @@ border-top-right-radius: 10px;</string>
    </item>
    <item>
     <widget class="QFrame" name="frame_2">
+     <property name="styleSheet">
+      <string notr="true">QFrame{
+border: 2px solid #164DCA;
+border-top:none;
+border-bottom:none;
+}
+</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -104,6 +125,14 @@ font-size: 20px;
    </item>
    <item>
     <widget class="QFrame" name="frame_3">
+     <property name="styleSheet">
+      <string notr="true">QFrame{
+border: 2px solid #164DCA;
+border-top:none;
+border-bottom:none;
+}
+</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -154,6 +183,14 @@ font-size: 20px;
        <height>30</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame{
+border: 2px solid #164DCA;
+border-top:none;
+border-bottom:none;
+}
+</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -163,6 +200,9 @@ font-size: 20px;
      <layout class="QVBoxLayout" name="verticalLayout_6">
       <item alignment="Qt::AlignHCenter">
        <widget class="QLabel" name="lb_warning">
+        <property name="styleSheet">
+         <string notr="true">border: none;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -173,6 +213,14 @@ font-size: 20px;
    </item>
    <item>
     <widget class="QFrame" name="frame_5">
+     <property name="styleSheet">
+      <string notr="true">QFrame{
+border: 2px solid #164DCA;
+border-top:none;
+border-bottom:none;
+}
+</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -206,8 +254,13 @@ font-size: 20px;
    <item>
     <widget class="QFrame" name="frame_4">
      <property name="styleSheet">
-      <string notr="true">border-bottom-left-radius: 20px;
-border-bottom-right-radius: 20px;</string>
+      <string notr="true">QFrame{
+border: 2px solid #164DCA;
+border-bottom-left-radius: 15px;
+border-bottom-right-radius: 15px;
+border-top:none;
+}
+</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -228,7 +281,8 @@ border-bottom-right-radius: 20px;</string>
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <bold>false</bold>
+          <weight>62</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -258,7 +312,8 @@ border-bottom-right-radius: 20px;</string>
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <bold>false</bold>
+          <weight>62</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">

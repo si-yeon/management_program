@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(282, 180)
+        Dialog.resize(285, 180)
         Dialog.setMinimumSize(QtCore.QSize(0, 180))
         Dialog.setMaximumSize(QtCore.QSize(16777215, 180))
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
@@ -25,6 +25,10 @@ class Ui_Dialog(object):
         self.widget_2.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-top-left-radius: 15px;\n"
+"border-top-right-radius: 15px;\n"
+"border-bottom:none;\n"
 "}")
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_2)
@@ -32,19 +36,30 @@ class Ui_Dialog(object):
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.label_2 = QtWidgets.QLabel(self.widget_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Pretendard")
-        font.setPointSize(17)
+        font.setBold(True)
+        font.setWeight(62)
         self.label_2.setFont(font)
+        self.label_2.setStyleSheet("border: none;\n"
+"border-radius: 0;\n"
+"font-weight:500;\n"
+"")
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_3.addWidget(self.label_2)
         self.le_ip = QtWidgets.QLineEdit(self.widget_2)
         self.le_ip.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-bottom: 2px solid  #212529;\n"
+"border-bottom: 2px solid #164DCA;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "text-align: center;\n"
+"font-weight:500;\n"
 "}\n"
 "\n"
 "\n"
@@ -56,6 +71,9 @@ class Ui_Dialog(object):
         self.widget_3.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-top:none;\n"
+"border-bottom:none;\n"
 "}")
         self.widget_3.setObjectName("widget_3")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget_3)
@@ -65,17 +83,23 @@ class Ui_Dialog(object):
         self.label = QtWidgets.QLabel(self.widget_3)
         font = QtGui.QFont()
         font.setFamily("Pretendard")
-        font.setPointSize(17)
+        font.setBold(True)
+        font.setWeight(62)
         self.label.setFont(font)
+        self.label.setStyleSheet("border: none;\n"
+"border-radius: 0;\n"
+"font-weight:500;\n"
+"")
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.le_port = QtWidgets.QLineEdit(self.widget_3)
         self.le_port.setStyleSheet("QLineEdit{\n"
 "border: none; \n"
-"border-bottom: 2px solid  #212529;\n"
+"border-bottom: 2px solid #164DCA;\n"
 "background-color: transparent;\n"
 "font-size: 20px;\n"
 "text-align: center;\n"
+"font-weight:500;\n"
 "}\n"
 "\n"
 "\n"
@@ -87,6 +111,10 @@ class Ui_Dialog(object):
         self.widget_4.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-bottom-left-radius: 15px;\n"
+"border-bottom-right-radius: 15px;\n"
+"border-top:none;\n"
 "}")
         self.widget_4.setObjectName("widget_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget_4)
@@ -97,15 +125,18 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(62)
+        font.setWeight(75)
         self.pb_connect.setFont(font)
-        self.pb_connect.setStyleSheet("border: 2px solid #212529;\n"
-"    background-color: #fff;\n"
-"    color: #212529;\n"
-"    font-weight: 500;\n"
-"    font-size: 20px;\n"
-"    border-top-left-radius: 0.3rem;\n"
-"    border-top-right-radius: 0.3rem;")
+        self.pb_connect.setStyleSheet("QPushButton{\n"
+"background: #164DCA;\n"
+"box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);\n"
+"align-items: center;\n"
+"color: #fff;\n"
+"font-weight: 600;\n"
+"font-size: 20px;\n"
+"border-radius: 10px;\n"
+"padding: 6px;\n"
+"}")
         self.pb_connect.setObjectName("pb_connect")
         self.horizontalLayout_2.addWidget(self.pb_connect, 0, QtCore.Qt.AlignHCenter)
         self.pb_close = QtWidgets.QPushButton(self.widget_4)
@@ -114,15 +145,18 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(62)
+        font.setWeight(75)
         self.pb_close.setFont(font)
-        self.pb_close.setStyleSheet("border: 2px solid #212529;\n"
-"    background-color: #fff;\n"
-"    color: #212529;\n"
-"    font-weight: 500;\n"
-"    font-size: 20px;\n"
-"    border-top-left-radius: 0.3rem;\n"
-"    border-top-right-radius: 0.3rem;")
+        self.pb_close.setStyleSheet("QPushButton{\n"
+"background: #164DCA;\n"
+"box-shadow: 0px 2px 12px rgb(25 25 25 / 16%);\n"
+"align-items: center;\n"
+"color: #fff;\n"
+"font-weight: 600;\n"
+"font-size: 20px;\n"
+"border-radius: 10px;\n"
+"padding: 6px;\n"
+"}")
         self.pb_close.setObjectName("pb_close")
         self.horizontalLayout_2.addWidget(self.pb_close, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout.addWidget(self.widget_4)

@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(296, 203)
+        Dialog.resize(296, 197)
         Dialog.setMinimumSize(QtCore.QSize(0, 0))
         Dialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
@@ -35,6 +35,10 @@ class Ui_Dialog(object):
         self.widget_2.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-top-left-radius: 15px;\n"
+"border-top-right-radius: 15px;\n"
+"border-bottom:none;\n"
 "}")
         self.widget_2.setObjectName("widget_2")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget_2)
@@ -50,7 +54,8 @@ class Ui_Dialog(object):
         self.lb_code.setStyleSheet("background-color: transparent;\n"
 "font-size: 30px;\n"
 "text-align: center;\n"
-" color: #164DCA;\n"
+"border: none;\n"
+"border-radius: 0;\n"
 "\n"
 "\n"
 "")
@@ -66,15 +71,15 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(False)
+        font.setBold(True)
+        font.setWeight(62)
         self.sb_num.setFont(font)
-        self.sb_num.setStyleSheet("border: 2px solid #164DCA;\n"
-"    background-color: #fff;\n"
-"    color: #164DCA;\n"
+        self.sb_num.setStyleSheet("border: none;\n"
+"border-bottom: 2px solid #164DCA;   \n"
+"\n"
+"background-color: #fff;\n"
 "    font-weight: 500;\n"
-"    font-size: 40px;\n"
-"    border-top-left-radius: 0.3rem;\n"
-"    border-top-right-radius: 0.3rem;")
+"    font-size: 40px;")
         self.sb_num.setObjectName("sb_num")
         self.verticalLayout_2.addWidget(self.sb_num, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout.addWidget(self.widget_2)
@@ -84,6 +89,10 @@ class Ui_Dialog(object):
         self.widget_4.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-bottom-left-radius: 15px;\n"
+"border-bottom-right-radius: 15px;\n"
+"border-top:none;\n"
 "}")
         self.widget_4.setObjectName("widget_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget_4)
@@ -96,6 +105,7 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
+        font.setWeight(75)
         self.pb_check.setFont(font)
         self.pb_check.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"
@@ -115,6 +125,7 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
+        font.setWeight(75)
         self.pb_cancel.setFont(font)
         self.pb_cancel.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"

@@ -31,6 +31,10 @@ class Ui_Dialog(object):
         self.widget_2.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-top-left-radius: 15px;\n"
+"border-top-right-radius: 15px;\n"
+"border-bottom:none;\n"
 "}")
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_2)
@@ -40,17 +44,29 @@ class Ui_Dialog(object):
         self.lb_msg = QtWidgets.QLabel(self.widget_2)
         font = QtGui.QFont()
         font.setFamily("Pretendard")
-        font.setPointSize(17)
+        font.setPointSize(-1)
         self.lb_msg.setFont(font)
-        self.lb_msg.setStyleSheet("color: #164DCA;")
+        self.lb_msg.setStyleSheet("background-color: transparent;\n"
+"font-size: 30px;\n"
+"text-align: center;\n"
+" color: #164DCA;\n"
+"border: none;\n"
+"border-radius: 0;\n"
+"\n"
+"\n"
+"")
         self.lb_msg.setObjectName("lb_msg")
-        self.horizontalLayout_3.addWidget(self.lb_msg, 0, QtCore.Qt.AlignHCenter)
+        self.horizontalLayout_3.addWidget(self.lb_msg, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
         self.verticalLayout.addWidget(self.widget_2)
         self.widget_4 = QtWidgets.QWidget(Dialog)
         self.widget_4.setMaximumSize(QtCore.QSize(16777215, 60))
         self.widget_4.setStyleSheet("QWidget{\n"
 "font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);\n"
+"border: 2px solid #164DCA;\n"
+"border-bottom-left-radius: 15px;\n"
+"border-bottom-right-radius: 15px;\n"
+"border-top:none;\n"
 "}")
         self.widget_4.setObjectName("widget_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget_4)
@@ -63,6 +79,7 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
+        font.setWeight(75)
         self.pb_check.setFont(font)
         self.pb_check.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"
@@ -82,6 +99,7 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
+        font.setWeight(75)
         self.pb_cancel.setFont(font)
         self.pb_cancel.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"

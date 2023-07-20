@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
 "align-items: center;\n"
 "color: #fff;\n"
 "font-weight: 600;\n"
-"font-size: 15px;\n"
+"font-size: 20px;\n"
 "border-radius: 10px;\n"
 "padding: 6px;\n"
 "}")
@@ -380,7 +380,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.widget_9)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 21))
         self.menubar.setObjectName("menubar")
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
@@ -401,6 +401,10 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.lb_no_read.setText(_translate("MainWindow", "안 읽음"))
+        self.pb_chat.setToolTip(_translate("MainWindow", "채팅"))
+        self.pb_timeline.setToolTip(_translate("MainWindow", "타임라인"))
+        self.pb_profile.setToolTip(_translate("MainWindow", "내 정보"))
+        self.pb_logout.setToolTip(_translate("MainWindow", "로그아웃"))
         self.pb_shortage_check.setText(_translate("MainWindow", "재고부족"))
         self.pb_inven_check.setText(_translate("MainWindow", "재고현황"))
         self.pb_add.setText(_translate("MainWindow", "추가"))

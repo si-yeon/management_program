@@ -25,8 +25,8 @@ class RegisterController(QDialog, RegisterView, CommonController, TemporaryStora
         생성자 설정
         """
         self.setupUi(self)
-        # self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
-        # self.setAttribute(Qt.WA_TranslucentBackground, True)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
 
     def init_variable(self, row_data):
         """

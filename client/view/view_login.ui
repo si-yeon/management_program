@@ -212,46 +212,6 @@ border-bottom:none;
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="frame_5">
-     <property name="styleSheet">
-      <string notr="true">QFrame{
-border: 2px solid #164DCA;
-border-top:none;
-border-bottom:none;
-}
-</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item alignment="Qt::AlignHCenter">
-       <widget class="QCheckBox" name="cb_auto_fill">
-        <property name="styleSheet">
-         <string notr="true">font-size: 15px;</string>
-        </property>
-        <property name="text">
-         <string>자동완성</string>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignHCenter">
-       <widget class="QCheckBox" name="cb_remember_id">
-        <property name="styleSheet">
-         <string notr="true">font-size: 15px;</string>
-        </property>
-        <property name="text">
-         <string>아이디 저장</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
     <widget class="QFrame" name="frame_4">
      <property name="styleSheet">
       <string notr="true">QFrame{
@@ -281,8 +241,7 @@ border-top:none;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>62</weight>
-          <bold>true</bold>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -312,8 +271,7 @@ border-top:none;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>62</weight>
-          <bold>true</bold>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">

@@ -6,14 +6,14 @@ import pandas as pd
 class ManagerDAO:
     def __init__(self, db_name='../server/db/data.db'):
         self.conn = sqlite3.connect(db_name)
-    def insert_manager(self, **managers):
+
+    def insert_manager(self, manager: dict):
         """
         관리자 추가
-        :param managers : 관리자 정보
+        :param manager : 관리자 정보
         :return:
         """
-        print(managers)
-        df = pd.DataFrame(managers)
+        df = pd.DataFrame(manager)
         df.to_sql('tb_manager', self.conn, if_exists='append', index=False)
         self.conn.commit()
 
@@ -26,7 +26,7 @@ class ManagerDAO:
         df = pd.read_sql(query, self.conn)
         return df
 
-    def get_manager_by_col(self, col, value):
+    def get_manager_by_col(self, col: str, value: str):
         """
         관리자 정보 조건 조회
         :param col:
@@ -47,5 +47,4 @@ class ManagerDAO:
 
 if __name__ == "__main__":
     dao = ManagerDAO('../db/data.db')
-    member_info = dao.insert_manager(id= ['test'], pw= ['test'], name= ['test'], depart= ['test'],position= ['test'],img= ['test'])
     dao.close_connection()

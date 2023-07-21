@@ -38,7 +38,7 @@ class Ui_Dialog(object):
 "}")
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_2)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_3.setContentsMargins(10, 0, 10, 0)
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.le_file_name = QtWidgets.QLineEdit(self.widget_2)
@@ -72,7 +72,6 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(75)
         self.pb_check.setFont(font)
         self.pb_check.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"
@@ -92,7 +91,6 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(75)
         self.pb_cancel.setFont(font)
         self.pb_cancel.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"

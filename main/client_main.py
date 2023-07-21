@@ -17,9 +17,9 @@ if __name__ == '__main__':
     if conn_server.connected:
         login_view = LoginController()
         login_view.exec()
-        # if login_view.is_ok:
-        main = MainWindowController()
-        main.show()
+        if login_view.is_ok:
+            main = MainWindowController()
+            main.show()
     else:
         sys.exit()
     sys.excepthook = lambda exctype, value, traceback: show_error_message(str(value), traceback)

@@ -246,8 +246,7 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(62)
+        font.setBold(False)
         self.pb_join.setFont(font)
         self.pb_join.setStyleSheet("border: 2px solid #164DCA;\n"
 "    background-color: #fff;\n"
@@ -265,8 +264,7 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(62)
+        font.setBold(False)
         self.pb_member.setFont(font)
         self.pb_member.setStyleSheet("border: 2px solid #164DCA;\n"
 "    background-color: #fff;\n"

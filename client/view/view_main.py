@@ -39,61 +39,68 @@ class Ui_MainWindow(object):
         self.widget_2.setMaximumSize(QtCore.QSize(16777215, 60))
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget_2)
-        self.horizontalLayout_2.setContentsMargins(9, 9, 9, 6)
+        self.horizontalLayout_2.setContentsMargins(9, 0, 9, 6)
         self.horizontalLayout_2.setSpacing(6)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.widget_4 = QtWidgets.QWidget(self.widget_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widget_4.sizePolicy().hasHeightForWidth())
+        self.widget_4.setSizePolicy(sizePolicy)
         self.widget_4.setObjectName("widget_4")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget_4)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setSpacing(5)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.horizontalLayout_11 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_11.setSpacing(6)
-        self.horizontalLayout_11.setObjectName("horizontalLayout_11")
-        self.lb_no_read = QtWidgets.QLabel(self.widget_4)
-        self.lb_no_read.setObjectName("lb_no_read")
-        self.horizontalLayout_11.addWidget(self.lb_no_read)
+        self.pb_alarm = QtWidgets.QPushButton(self.widget_4)
+        self.pb_alarm.setMinimumSize(QtCore.QSize(0, 0))
+        self.pb_alarm.setStyleSheet("background-color: rgba(0, 0, 0, 0);")
+        self.pb_alarm.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../../img/icon/alarm.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pb_alarm.setIcon(icon)
+        self.pb_alarm.setIconSize(QtCore.QSize(40, 40))
+        self.pb_alarm.setObjectName("pb_alarm")
+        self.horizontalLayout.addWidget(self.pb_alarm)
         self.pb_chat = QtWidgets.QPushButton(self.widget_4)
         self.pb_chat.setMinimumSize(QtCore.QSize(0, 0))
         self.pb_chat.setStyleSheet("background-color: rgba(0, 0, 0, 0);")
         self.pb_chat.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../img/icon/chat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pb_chat.setIcon(icon)
-        self.pb_chat.setIconSize(QtCore.QSize(30, 30))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("../../img/icon/chat.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pb_chat.setIcon(icon1)
+        self.pb_chat.setIconSize(QtCore.QSize(40, 40))
         self.pb_chat.setObjectName("pb_chat")
-        self.horizontalLayout_11.addWidget(self.pb_chat)
-        self.horizontalLayout.addLayout(self.horizontalLayout_11)
+        self.horizontalLayout.addWidget(self.pb_chat)
         self.pb_timeline = QtWidgets.QPushButton(self.widget_4)
         self.pb_timeline.setMinimumSize(QtCore.QSize(0, 0))
         self.pb_timeline.setStyleSheet("background-color: rgba(0, 0, 0, 0);")
         self.pb_timeline.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../../img/icon/time.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pb_timeline.setIcon(icon1)
-        self.pb_timeline.setIconSize(QtCore.QSize(30, 30))
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("../../img/icon/time.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pb_timeline.setIcon(icon2)
+        self.pb_timeline.setIconSize(QtCore.QSize(40, 40))
         self.pb_timeline.setObjectName("pb_timeline")
         self.horizontalLayout.addWidget(self.pb_timeline)
         self.pb_profile = QtWidgets.QPushButton(self.widget_4)
         self.pb_profile.setMinimumSize(QtCore.QSize(0, 0))
         self.pb_profile.setStyleSheet("background-color: rgba(0, 0, 0, 0);")
         self.pb_profile.setText("")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../../img/icon/profile.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pb_profile.setIcon(icon2)
-        self.pb_profile.setIconSize(QtCore.QSize(30, 30))
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("../../img/icon/profile.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pb_profile.setIcon(icon3)
+        self.pb_profile.setIconSize(QtCore.QSize(40, 40))
         self.pb_profile.setObjectName("pb_profile")
         self.horizontalLayout.addWidget(self.pb_profile)
         self.pb_logout = QtWidgets.QPushButton(self.widget_4)
         self.pb_logout.setMinimumSize(QtCore.QSize(0, 0))
         self.pb_logout.setStyleSheet("background-color: rgba(0, 0, 0, 0);")
         self.pb_logout.setText("")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../../img/icon/logout.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pb_logout.setIcon(icon3)
-        self.pb_logout.setIconSize(QtCore.QSize(30, 30))
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("../../img/icon/logout.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pb_logout.setIcon(icon4)
+        self.pb_logout.setIconSize(QtCore.QSize(40, 40))
         self.pb_logout.setObjectName("pb_logout")
         self.horizontalLayout.addWidget(self.pb_logout)
         self.horizontalLayout_2.addWidget(self.widget_4, 0, QtCore.Qt.AlignRight)
@@ -137,7 +144,7 @@ class Ui_MainWindow(object):
         self.pb_excel.setMinimumSize(QtCore.QSize(0, 0))
         self.pb_excel.setStyleSheet("")
         self.pb_excel.setText("")
-        self.pb_excel.setIconSize(QtCore.QSize(20, 20))
+        self.pb_excel.setIconSize(QtCore.QSize(25, 25))
         self.pb_excel.setObjectName("pb_excel")
         self.horizontalLayout_7.addWidget(self.pb_excel, 0, QtCore.Qt.AlignLeft)
         self.pb_shortage_check = QtWidgets.QPushButton(self.widget)
@@ -165,7 +172,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setSpacing(0)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.le_find = QtWidgets.QLineEdit(self.widget_12)
-        self.le_find.setMinimumSize(QtCore.QSize(200, 30))
+        self.le_find.setMinimumSize(QtCore.QSize(250, 30))
         self.le_find.setStyleSheet("    text-align: center;\n"
 "    border: 1px solid #164DCA;\n"
 "    border-top-left-radius: 10px;\n"
@@ -187,8 +194,27 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.addWidget(self.widget_12)
         self.verticalLayout_3.addWidget(self.widget, 0, QtCore.Qt.AlignRight|QtCore.Qt.AlignTop)
         self.tableWidget = QtWidgets.QTableWidget(self.widget_10)
-        self.tableWidget.setStyleSheet("    text-align: center;\n"
-"    border: 1px solid #164DCA;\n"
+        self.tableWidget.setStyleSheet("QTableWidget\n"
+"{\n"
+"text-align: center;\n"
+"border: 1px solid #164DCA;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"    background: red;\n"
+"    width: 10px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
+"    background: gray;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical,\n"
+"QScrollBar::sub-line:vertical {\n"
+"    border: none;\n"
+"    background: none;\n"
+"}\n"
+"\n"
 "")
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(0)
@@ -241,7 +267,7 @@ class Ui_MainWindow(object):
         self.page_chat = QtWidgets.QWidget()
         self.page_chat.setObjectName("page_chat")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.page_chat)
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_5.setContentsMargins(0, 0, 9, 0)
         self.verticalLayout_5.setSpacing(6)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.lw_chat_room = QtWidgets.QListWidget(self.page_chat)
@@ -280,26 +306,25 @@ class Ui_MainWindow(object):
         self.le_msg.setMinimumSize(QtCore.QSize(0, 40))
         self.le_msg.setStyleSheet("    text-align: center;\n"
 "    border: 1px solid #164DCA;\n"
-"    border-top-left-radius: 10px;\n"
-"border-bottom-left-radius: 10px;\n"
 "font-size: 15px;\n"
 "")
         self.le_msg.setObjectName("le_msg")
         self.horizontalLayout_8.addWidget(self.le_msg)
         self.pb_send = QtWidgets.QPushButton(self.widget_13)
-        self.pb_send.setMinimumSize(QtCore.QSize(0, 40))
-        self.pb_send.setStyleSheet("border-top-right-radius: 10px;\n"
-"border-bottom-right-radius: 10px;\n"
-"border-top-left-radius: 0px;\n"
-"border-bottom-left-radius: 0px;")
+        self.pb_send.setMinimumSize(QtCore.QSize(70, 40))
+        self.pb_send.setStyleSheet("border-radius: 0;")
+        self.pb_send.setText("")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap("../../img/icon/send.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pb_send.setIcon(icon5)
+        self.pb_send.setIconSize(QtCore.QSize(25, 25))
         self.pb_send.setObjectName("pb_send")
         self.horizontalLayout_8.addWidget(self.pb_send)
         self.verticalLayout_5.addWidget(self.widget_13)
         self.stack_view.addWidget(self.page_chat)
         self.page_profile = QtWidgets.QWidget()
         self.page_profile.setStyleSheet("  text-align: center;\n"
-"    border: 1px solid #164DCA;\n"
-"    border-radius: 15px;")
+"    border: 1px solid #164DCA;")
         self.page_profile.setObjectName("page_profile")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.page_profile)
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
@@ -365,13 +390,12 @@ class Ui_MainWindow(object):
         self.page_timeline = QtWidgets.QWidget()
         self.page_timeline.setObjectName("page_timeline")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.page_timeline)
-        self.verticalLayout_6.setContentsMargins(9, 0, 9, 9)
+        self.verticalLayout_6.setContentsMargins(0, 0, 9, 9)
         self.verticalLayout_6.setSpacing(6)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
         self.lw_time_line = QtWidgets.QListWidget(self.page_timeline)
         self.lw_time_line.setStyleSheet("    text-align: center;\n"
-"    border: 1px solid #164DCA;\n"
-"    border-radius: 15px;")
+"    border: 1px solid #164DCA;")
         self.lw_time_line.setObjectName("lw_time_line")
         self.verticalLayout_6.addWidget(self.lw_time_line)
         self.stack_view.addWidget(self.page_timeline)
@@ -380,7 +404,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.widget_9)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 22))
         self.menubar.setObjectName("menubar")
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
@@ -399,22 +423,28 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.lb_no_read.setText(_translate("MainWindow", "안 읽음"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "재고관리"))
         self.pb_chat.setToolTip(_translate("MainWindow", "채팅"))
         self.pb_timeline.setToolTip(_translate("MainWindow", "타임라인"))
         self.pb_profile.setToolTip(_translate("MainWindow", "내 정보"))
         self.pb_logout.setToolTip(_translate("MainWindow", "로그아웃"))
         self.pb_shortage_check.setText(_translate("MainWindow", "재고부족"))
-        self.pb_inven_check.setText(_translate("MainWindow", "재고현황"))
+        self.pb_inven_check.setText(_translate("MainWindow", "업데이트"))
         self.pb_add.setText(_translate("MainWindow", "추가"))
         self.pb_update.setText(_translate("MainWindow", "수정"))
         self.pb_delete.setText(_translate("MainWindow", "삭제"))
         self.pb_take_In.setText(_translate("MainWindow", "입고"))
         self.pb_take_out.setText(_translate("MainWindow", "출고"))
-        self.pb_send.setText(_translate("MainWindow", "전송"))
         self.label_2.setText(_translate("MainWindow", "사진"))
         self.label_3.setText(_translate("MainWindow", "아이디"))
+        self.textEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'맑은 고딕\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">상태메시지</p></body></html>"))
         self.label_11.setText(_translate("MainWindow", "TextLabel"))
         self.label_10.setText(_translate("MainWindow", "입사일"))
         self.label_7.setText(_translate("MainWindow", "TextLabel"))

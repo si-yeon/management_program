@@ -1,6 +1,7 @@
 import json
 import shutil
 import sys
+from datetime import datetime
 from tkinter import filedialog
 
 from PyQt5.QtCore import Qt, QRect
@@ -26,6 +27,8 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
         생성자 설정
         """
         self.setupUi(self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
 
     def init_variable(self):
         """
@@ -247,16 +250,16 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
         """
         self.dict_info = dict()
         if self.is_ok:
-            self.dict_info['id'] = self.id_
-            self.dict_info['pw'] = self.pw_
-            self.dict_info['name'] = self.name
-            self.dict_info['depart'] = self.depart
-            self.dict_info['position'] = self.position
+            self.dict_info['id'] = [self.id_]
+            self.dict_info['pw'] = [self.pw_]
+            self.dict_info['name'] = [self.name]
+            self.dict_info['depart'] = [self.depart]
+            self.dict_info['position'] = [self.position]
             try:
-                self.dict_info['img'] = self.img_path
+                self.dict_info['img'] = [self.img_path]
             except:
-                self.dict_info['img'] = '../profile/who.png'
-
+                self.dict_info['img'] = ['../profile/who.png']
+            self.dict_info['date'] = [datetime.now().strftime('%Y-%m-%d')]
             json_data = json.dumps(self.dict_info)
             msg = f'join{self.header_split}{json_data}'
             self.send_json_packet(msg)

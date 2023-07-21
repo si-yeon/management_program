@@ -583,8 +583,7 @@ border-top:none;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>62</weight>
-          <bold>true</bold>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -615,8 +614,7 @@ border-top:none;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>62</weight>
-          <bold>true</bold>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">

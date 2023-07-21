@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(613, 383)
+        Dialog.resize(613, 396)
         Dialog.setStyleSheet("font-family: Pretendard;\n"
 "background-color: rgb(255, 255, 255);")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(Dialog)

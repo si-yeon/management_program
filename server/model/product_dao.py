@@ -15,9 +15,6 @@ class ProductDAO:
         :param product : 상품 정보
         :return:
         """
-        check_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        product['add_time'] = check_time
-        print(product)
         df = pd.DataFrame(product)
         df.to_sql('tb_product', self.conn, if_exists='append', index=False)
         self.conn.commit()
@@ -51,7 +48,7 @@ class ProductDAO:
         :return:
         """
         query = f"""DELETE FROM tb_product
-                    WHERE code = {product['code']}
+                    WHERE code = "{product['code']}"
                 """
         self.cursor.execute(query)
         self.conn.commit()

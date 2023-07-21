@@ -6,48 +6,93 @@ class RoomController(TempStorage):
         self._server = server_
         self._occupants = []
 
-    # 방 퇴장 시 퇴장 메시지 전송
-    def out_send(self):
-        out_list = []
-        for ocuupant in range(len(self._occupants)):
-            out_list.append(self._occupants[ocuupant]._clientName)
-        sending_out_list = 'out' + self.header_split + TempStorage.split_1.join(out_list)
-        for o in self._occupants:
-            o.send_to_client(sending_out_list)
-
-    # 서버 소켓 추출
     def get_server(self):
+        """
+        서버 객체
+        :return:
+        """
         return self._server
 
-    # 방 이름 추출
     def get_name(self):
+        """
+        방 이름
+        :return:
+        """
         return self._roomName
 
-    # 방 접속자 리스트에 클라이언트 추가
     def add_client(self, c):
+        """
+        클라이언트 추가
+        :param c: 클라이언트
+        :return:
+        """
         self._occupants.append(c)
 
-    # 방에 입장할 때 입장 메시지 전송
-    def send_enter_message(self, name):
+    def send_enter_message(self, name: str):
+        """
+        입장 메시지 전달
+        :param name: 클라이언트 이름
+        :return:
+        """
         msg = 'chat' + self.header_split + name + " 이/가 입장 했습니다."
-        self.send_update(msg)
+        self.send_all(msg)
 
-    # 방 접속자 리스트에서 클라이언트 제거
-    def remove_client(self, c):
-        if c in self._occupants:
-            self._occupants.remove(c)
-        m = "chat" + self.header_split + c._clientName + " 이/가 퇴장 했습니다."
-        self.out_send()
-        self.send_update(m)
-
-    # 메시지 전송
-    def send_message(self, sender, message):
+    def send_message(self, sender: str, message: str):
+        """
+        전송자를 제외한 나머지 수신자에게 메시지 전송
+        :param sender: 전송자
+        :param message: 메시지
+        :return:
+        """
         packet = "message" + self.header_split + sender + ': ' + message
         for o in self._occupants:
             if not o.get_name() == sender:
                 o.send_to_client(packet)
 
-    # 단체로 관련 메시지 전송
-    def send_update(self, u):
+    def send_timeline(self, msg: str):
+        """
+        타임라인 내용 전달
+        :param msg: 메시지
+        :return:
+        """
+        packet = "timeline" + self.header_split + msg
         for o in self._occupants:
-            o.send_to_client(u)
+            o.send_to_client(packet)
+
+    def send_all(self, msg: str):
+        """
+        단체 메시지 전달
+        :param msg: 메시지
+        :return:
+        """
+        for o in self._occupants:
+            o.send_to_client(msg)
+
+    def send_json_all(self, msg: str):
+        """
+        단체 메시지 전달
+        :param msg: 메시지
+        :return:
+        """
+        for o in self._occupants:
+            o.send_json_to_client(msg)
+
+    def send_out_message(self, name: str):
+        """
+        퇴장 메시지 전달
+        :param name: 클라이언트 이름
+        :return:
+        """
+        msg = 'chat' + self.header_split + name + " 이/가 퇴장 했습니다."
+        self.send_all(msg)
+
+    def remove_client(self, c):
+        """
+        클라이언트 제거
+        :param c: 클라이언트
+        :return:
+        """
+        if c in self._occupants:
+            self._occupants.remove(c)
+
+

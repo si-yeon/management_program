@@ -38,7 +38,7 @@ class Ui_Dialog(object):
 "}")
         self.widget_2.setObjectName("widget_2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_2)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_3.setContentsMargins(20, 0, 20, 0)
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.lb_msg = QtWidgets.QLabel(self.widget_2)
@@ -49,12 +49,8 @@ class Ui_Dialog(object):
         self.lb_msg.setStyleSheet("background-color: transparent;\n"
 "font-size: 30px;\n"
 "text-align: center;\n"
-" color: #164DCA;\n"
 "border: none;\n"
-"border-radius: 0;\n"
-"\n"
-"\n"
-"")
+"border-radius: 0;")
         self.lb_msg.setObjectName("lb_msg")
         self.horizontalLayout_3.addWidget(self.lb_msg, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
         self.verticalLayout.addWidget(self.widget_2)
@@ -79,7 +75,6 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(75)
         self.pb_check.setFont(font)
         self.pb_check.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"
@@ -99,7 +94,6 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(75)
         self.pb_cancel.setFont(font)
         self.pb_cancel.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"

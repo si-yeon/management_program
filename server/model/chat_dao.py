@@ -9,7 +9,7 @@ class ChatDAO:
 
     def insert_chat(self, **chatinfo):
         """
-
+        채팅 내용 추가
         :param chatinfo : 로그 정보
         :return:
         """

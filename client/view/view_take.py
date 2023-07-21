@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(296, 197)
+        Dialog.resize(296, 195)
         Dialog.setMinimumSize(QtCore.QSize(0, 0))
         Dialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
@@ -71,8 +71,7 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(62)
+        font.setBold(False)
         self.sb_num.setFont(font)
         self.sb_num.setStyleSheet("border: none;\n"
 "border-bottom: 2px solid #164DCA;   \n"
@@ -80,6 +79,7 @@ class Ui_Dialog(object):
 "background-color: #fff;\n"
 "    font-weight: 500;\n"
 "    font-size: 40px;")
+        self.sb_num.setMaximum(9999)
         self.sb_num.setObjectName("sb_num")
         self.verticalLayout_2.addWidget(self.sb_num, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout.addWidget(self.widget_2)
@@ -105,7 +105,6 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(75)
         self.pb_check.setFont(font)
         self.pb_check.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"
@@ -125,7 +124,6 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(75)
         self.pb_cancel.setFont(font)
         self.pb_cancel.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"

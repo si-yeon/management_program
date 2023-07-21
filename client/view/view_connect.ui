@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>285</width>
-    <height>180</height>
+    <height>200</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>0</width>
-    <height>180</height>
+    <height>200</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>180</height>
+    <height>200</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -80,14 +80,17 @@ border-bottom:none;
         <property name="font">
          <font>
           <family>Pretendard</family>
-          <weight>62</weight>
-          <bold>true</bold>
+          <pointsize>-1</pointsize>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: none;
+         <string notr="true">background-color: transparent;
+font-size: 25px;
+text-align: center;
+border: none;
 border-radius: 0;
-font-weight:500;
+font-weight: 500;
 </string>
         </property>
         <property name="text">
@@ -102,9 +105,9 @@ font-weight:500;
 border: none; 
 border-bottom: 2px solid #164DCA;
 background-color: transparent;
-font-size: 20px;
+font-size: 25px;
 text-align: center;
-font-weight:500;
+font-weight: 400;
 }
 
 
@@ -150,14 +153,17 @@ border-bottom:none;
         <property name="font">
          <font>
           <family>Pretendard</family>
-          <weight>62</weight>
-          <bold>true</bold>
+          <pointsize>-1</pointsize>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: none;
+         <string notr="true">background-color: transparent;
+font-size: 25px;
+text-align: center;
+border: none;
 border-radius: 0;
-font-weight:500;
+font-weight: 500;
 </string>
         </property>
         <property name="text">
@@ -172,9 +178,9 @@ font-weight:500;
 border: none; 
 border-bottom: 2px solid #164DCA;
 background-color: transparent;
-font-size: 20px;
+font-size: 25px;
 text-align: center;
-font-weight:500;
+font-weight: 400;
 }
 
 
@@ -213,7 +219,6 @@ border-top:none;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -246,7 +251,6 @@ padding: 6px;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>

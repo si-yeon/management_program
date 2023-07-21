@@ -70,13 +70,13 @@ border-bottom:none;
        <number>0</number>
       </property>
       <property name="leftMargin">
-       <number>0</number>
+       <number>10</number>
       </property>
       <property name="topMargin">
        <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>0</number>
+       <number>10</number>
       </property>
       <property name="bottomMargin">
        <number>0</number>
@@ -150,7 +150,6 @@ border-top:none;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -183,7 +182,6 @@ padding: 6px;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>

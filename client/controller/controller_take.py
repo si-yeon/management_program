@@ -1,5 +1,6 @@
 import sys
 
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QDialog
 
 from client.controller.controller_common import CommonController
@@ -21,8 +22,8 @@ class TakeController(QDialog, TakeView, CommonController, TemporaryStorage):
         생성자 설정
         """
         self.setupUi(self)
-        # self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
-        # self.setAttribute(Qt.WA_TranslucentBackground, True)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
 
     def init_variable(self, code):
         """

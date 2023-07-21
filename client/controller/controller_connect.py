@@ -2,6 +2,7 @@ import sys
 import threading
 from socket import *
 
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QDialog
 
 from client.controller.controller_check import CheckDialog
@@ -23,8 +24,8 @@ class ConnectController(QDialog, ConnectView, TemporaryStorage):
         생성자 설정
         """
         self.setupUi(self)
-        # self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
-        # self.setAttribute(Qt.WA_TranslucentBackground, True)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
 
     def init_variable(self):
         """

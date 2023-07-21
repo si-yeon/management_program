@@ -119,27 +119,6 @@ class Ui_Form(object):
         self.lb_warning.setObjectName("lb_warning")
         self.verticalLayout_6.addWidget(self.lb_warning, 0, QtCore.Qt.AlignHCenter)
         self.verticalLayout_2.addWidget(self.frame_6)
-        self.frame_5 = QtWidgets.QFrame(Form)
-        self.frame_5.setStyleSheet("QFrame{\n"
-"border: 2px solid #164DCA;\n"
-"border-top:none;\n"
-"border-bottom:none;\n"
-"}\n"
-"")
-        self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_5.setObjectName("frame_5")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame_5)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.cb_auto_fill = QtWidgets.QCheckBox(self.frame_5)
-        self.cb_auto_fill.setStyleSheet("font-size: 15px;")
-        self.cb_auto_fill.setObjectName("cb_auto_fill")
-        self.horizontalLayout.addWidget(self.cb_auto_fill, 0, QtCore.Qt.AlignHCenter)
-        self.cb_remember_id = QtWidgets.QCheckBox(self.frame_5)
-        self.cb_remember_id.setStyleSheet("font-size: 15px;")
-        self.cb_remember_id.setObjectName("cb_remember_id")
-        self.horizontalLayout.addWidget(self.cb_remember_id, 0, QtCore.Qt.AlignHCenter)
-        self.verticalLayout_2.addWidget(self.frame_5)
         self.frame_4 = QtWidgets.QFrame(Form)
         self.frame_4.setStyleSheet("QFrame{\n"
 "border: 2px solid #164DCA;\n"
@@ -158,8 +137,7 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(62)
+        font.setBold(False)
         self.pb_login.setFont(font)
         self.pb_login.setStyleSheet("border: 2px solid #164DCA;\n"
 "    background-color: #fff;\n"
@@ -176,8 +154,7 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(True)
-        font.setWeight(62)
+        font.setBold(False)
         self.pb_member.setFont(font)
         self.pb_member.setStyleSheet("border: 2px solid #164DCA;\n"
 "    background-color: #fff;\n"
@@ -198,8 +175,6 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "login"))
         self.lb_logo.setText(_translate("Form", "LOGO"))
-        self.cb_auto_fill.setText(_translate("Form", "자동완성"))
-        self.cb_remember_id.setText(_translate("Form", "아이디 저장"))
         self.pb_login.setText(_translate("Form", "로그인"))
         self.pb_member.setText(_translate("Form", "회원가입"))
 

@@ -1,6 +1,7 @@
 import json
 import threading
 
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QLineEdit, QDialog
 
@@ -24,6 +25,8 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
         생성자 설정
         """
         self.setupUi(self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
+        self.setAttribute(Qt.WA_TranslucentBackground, True)
 
     def init_widget(self):
         """
@@ -104,7 +107,7 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
     def process_login(self):
         if self.info['connect'][0]:
             try:
-                dict_data = {'id': self.id_, 'pw': self.pw_}
+                dict_data = {'id': [self.id_], 'pw': [self.pw_]}
                 json_data = json.dumps(dict_data)
                 msg = f'login{self.header_split}{json_data}'
                 self.send_json_packet(msg)

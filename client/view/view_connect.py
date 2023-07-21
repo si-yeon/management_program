@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(285, 180)
-        Dialog.setMinimumSize(QtCore.QSize(0, 180))
-        Dialog.setMaximumSize(QtCore.QSize(16777215, 180))
+        Dialog.resize(285, 200)
+        Dialog.setMinimumSize(QtCore.QSize(0, 200))
+        Dialog.setMaximumSize(QtCore.QSize(16777215, 200))
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
@@ -43,12 +43,15 @@ class Ui_Dialog(object):
         self.label_2.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Pretendard")
-        font.setBold(True)
-        font.setWeight(62)
+        font.setPointSize(-1)
+        font.setBold(False)
         self.label_2.setFont(font)
-        self.label_2.setStyleSheet("border: none;\n"
+        self.label_2.setStyleSheet("background-color: transparent;\n"
+"font-size: 25px;\n"
+"text-align: center;\n"
+"border: none;\n"
 "border-radius: 0;\n"
-"font-weight:500;\n"
+"font-weight: 500;\n"
 "")
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_3.addWidget(self.label_2)
@@ -57,9 +60,9 @@ class Ui_Dialog(object):
 "border: none; \n"
 "border-bottom: 2px solid #164DCA;\n"
 "background-color: transparent;\n"
-"font-size: 20px;\n"
+"font-size: 25px;\n"
 "text-align: center;\n"
-"font-weight:500;\n"
+"font-weight: 400;\n"
 "}\n"
 "\n"
 "\n"
@@ -83,12 +86,15 @@ class Ui_Dialog(object):
         self.label = QtWidgets.QLabel(self.widget_3)
         font = QtGui.QFont()
         font.setFamily("Pretendard")
-        font.setBold(True)
-        font.setWeight(62)
+        font.setPointSize(-1)
+        font.setBold(False)
         self.label.setFont(font)
-        self.label.setStyleSheet("border: none;\n"
+        self.label.setStyleSheet("background-color: transparent;\n"
+"font-size: 25px;\n"
+"text-align: center;\n"
+"border: none;\n"
 "border-radius: 0;\n"
-"font-weight:500;\n"
+"font-weight: 500;\n"
 "")
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
@@ -97,9 +103,9 @@ class Ui_Dialog(object):
 "border: none; \n"
 "border-bottom: 2px solid #164DCA;\n"
 "background-color: transparent;\n"
-"font-size: 20px;\n"
+"font-size: 25px;\n"
 "text-align: center;\n"
-"font-weight:500;\n"
+"font-weight: 400;\n"
 "}\n"
 "\n"
 "\n"
@@ -125,7 +131,6 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(75)
         self.pb_connect.setFont(font)
         self.pb_connect.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"
@@ -145,7 +150,6 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
-        font.setWeight(75)
         self.pb_close.setFont(font)
         self.pb_close.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"

@@ -1,10 +1,10 @@
-from socket import *
 import threading
+from socket import *
 
 from server.controller.controller_client import ClientController as Client
 from server.controller.controller_room import RoomController as Room
-
 from server.storage.temp_storage import TempStorage
+
 
 class ServerController(TempStorage):
     def __init__(self):
@@ -15,6 +15,7 @@ class ServerController(TempStorage):
         self._serverPort = self.serverport
         self._max_clients = self.max_clients
         self.main = Room('main', self)
+
     def start(self):
         """
         서버 시작
@@ -39,15 +40,15 @@ class ServerController(TempStorage):
         :param client: 클라이언트 객체
         :return:
         """
-        if client in TempStorage.clients:
-            TempStorage.clients.remove(client)
+        if client in self.clients:
+            self.clients.remove(client)
 
     def _server_full(self):
         """
         클라이언트 수 제한
         :return:
         """
-        return self._max_clients == len(TempStorage.clients)
+        return self._max_clients == len(self.clients)
 
     def _accept_connections(self):
         """
@@ -57,9 +58,7 @@ class ServerController(TempStorage):
         while True:
             if not self._server_full():
                 connection_socket, addr = self._serverSocket.accept()
-                new_client = Client(f"Client{len(self.clients) + 1}",
-                                    connection_socket, addr, self.main)
-                # self.clients.append(new_client)
+                Client(f"Client{len(self.clients) + 1}", connection_socket, addr, self.main)
             else:
                 connection_socket, addr = self._serverSocket.accept()
                 connection_socket.send(("error" + self.header_split + "Server is full").encode("UTF-8"))

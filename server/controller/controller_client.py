@@ -2,6 +2,7 @@ import json
 import threading
 
 from server.controller.controller_common import CommonController
+from server.controller.controller_room import RoomController as Room
 from server.model.chat_dao import ChatDAO
 from server.model.manager_dao import ManagerDAO
 from server.model.product_dao import ProductDAO
@@ -11,7 +12,7 @@ from server.storage.temp_storage import TempStorage
 
 
 class ClientController(TempStorage, CommonController):
-    def __init__(self, name, conn, addr, room):
+    def __init__(self, name: str, conn, addr, room: Room):
         self._clientId = 0
         self._clientName = name
         self._clientSocket = conn
@@ -20,23 +21,104 @@ class ClientController(TempStorage, CommonController):
 
         self._exists = True
 
-        receiving_thread = threading.Thread(target=self._receive_from_client)
+        receiving_thread = threading.Thread(target=self.receive_from_client)
         receiving_thread.start()
 
-    def input_db_text_data(self, message, room_number):
+    def get_name(self):
         """
-        채팅 내용 기록
-        :param message:
-        :param room_number:
+        클라이언트 이름 가져오기
         :return:
         """
-
-
-    # 이름을 가져오는 함수
-    def get_name(self):
         return self._clientName
 
-    # 각 클라이언트에 데이터를 전송하는 함수
+    def get_name_id(self, id: str):
+        """
+        사원아이디, 사원이름 가져오기
+        :param manager:
+        :return:
+        """
+        dao = ManagerDAO()
+        data = dao.get_manager_by_col('id', id)
+        manager_id = data.id.to_string(index=False)
+        manager_name = data.name.to_string(index=False)
+        dao.close_connection()
+        return manager_id, manager_name
+
+    def checking_login(self, id: str, pw: str):
+        """
+        로그인 확인
+        :param manager: 로그인 정보
+        :return:
+        """
+        dao = ManagerDAO()
+        data = dao.get_manager_by_col('id', id)
+        manager_id = data.id.to_string(index=False)
+        manager_pw = data.pw.to_string(index=False)
+        dao.close_connection()
+        if manager_id == id and manager_pw == pw:
+            return True
+        elif len(data) == 0:
+            return 'noneid'
+        else:
+            return 'wrongpw'
+
+    def checking_join(self, manager: dict):
+        """
+        회원가입 조건 확인
+        :param manager:
+        :return:
+        """
+        print(manager)
+        dao = ManagerDAO()
+        data = dao.get_manager_by_col('id', manager['id'][0])
+        if len(data) == 0:
+            dao.insert_manager(manager)
+            dao.close_connection()
+            return 'welcome'
+        else:
+            dao.close_connection()
+            return 'doubleid'
+
+    def send_previous(self):
+        """
+        이전 채팅기록 보내기
+        :return:
+        """
+        dao = ChatDAO()
+        data = dao.get_all_chat()
+        dao.close_connection()
+
+        reverse_data = data.iloc[::-1]
+
+        max_fifty_data = reverse_data.iloc[:50]
+
+        dict_data = max_fifty_data.to_dict('records')
+
+        dict_data.reverse()
+
+        for data in dict_data:
+            json_data = json.dumps(data)
+            self.send_json_to_client('log' + self.header_split + json_data)
+
+    def send_product(self, is_all=False):
+        """
+        상품 정보 보내기
+        :param is_all: True: 모두, False: 접속자만
+        :return:
+        """
+        dao = ProductDAO()
+        data = dao.get_all_product()
+        dao.close_connection()
+
+        dict_data = data.to_dict('records')
+
+        for idx, data in enumerate(dict_data):
+            json_data = json.dumps(data)
+            if is_all:
+                self._currentRoom.send_json_all('product' + self.header_split + str(idx) + self.split_1 + json_data)
+            else:
+                self.send_to_client('product' + self.header_split + str(idx) + self.split_1 + json_data)
+
     def send_to_client(self, data: str):
         packet_length = 4096
         if len(data.encode('utf-8')) < packet_length:
@@ -45,8 +127,7 @@ class ClientController(TempStorage, CommonController):
             filled_packet = data[:packet_length]
         self._clientSocket.send(filled_packet.encode("UTF-8"))
 
-
-    def send_json_to_client(self, data):
+    def send_json_to_client(self, data: str):
         """
         json 데이터 보내기
         :param data:
@@ -59,7 +140,7 @@ class ClientController(TempStorage, CommonController):
             filled_packet = data[:packet_length]
         self._clientSocket.send(bytes(filled_packet, 'utf-8'))
 
-    def _receive_from_client(self):
+    def receive_from_client(self):
         """
         클라이언트 패킷 신호 수신
         :return:
@@ -87,23 +168,24 @@ class ClientController(TempStorage, CommonController):
             result = self.checking_join(manager_info)
             if result == 'welcome':
                 self.send_to_client('welcome' + self.header_split)
-                self.input_log('회원가입', str(manager_info))
+                self.input_log('회원가입', f"{manager_info['name'][0]}({manager_info['id'][0]})이/가 회원가입 했습니다.")
             elif result == 'doubleid':
                 self.send_to_client('doubleid' + self.header_split)
         # 로그인
         elif command == 'login':
             manager_info = eval(self.header_split.join(parsed[1:]).strip())
-            manager_id = manager_info['id']
-            manager_pw = manager_info['pw']
-            result = self.checking_login(id=manager_id, pw=manager_pw)
+            manager_id = manager_info['id'][0]
+            manager_pw = manager_info['pw'][0]
+            result = self.checking_login(manager_id, manager_pw)
             if result:
-                self._clientId, self._clientName = self.get_name_id(id=manager_id)
-                self.send_to_client(f'login{self.header_split}{self._clientName}')
-                self.input_log('로그인', f'{self._clientName}({self._clientId}) 이/가 로그인하였습니다.')
-                self._currentRoom.add_client(self)
+                self._clientId, self._clientName = self.get_name_id(manager_id)
                 self.clients.append(self)
+                self._currentRoom.add_client(self)
+                self.send_to_client(f'login{self.header_split}{self._clientName}')
+                msg = f'{self._clientName}({self._clientId})이/가 로그인 했습니다.'
+                self._currentRoom.send_timeline(msg)
+                self.input_log('로그인', msg)
             elif result == 'wrongpw':
-                print(manager_id, manager_pw)
                 del self.clients[-1]
                 self.send_to_client('wrongpw' + self.header_split)
             elif result == 'noneid':
@@ -113,7 +195,6 @@ class ClientController(TempStorage, CommonController):
         elif command == 'enter':
             self.send_previous()
             self._currentRoom.send_enter_message(self._clientName)
-            print(f"{self._clientName} 이/가 접속 했습니다")
             self.send_product()
         # 메시지
         elif command == 'message':
@@ -129,151 +210,59 @@ class ClientController(TempStorage, CommonController):
             dao = ProductDAO()
             dao.insert_product(product_info)
             dao.close_connection()
-            self.send_product()
+            self.send_product(True)
+            msg = f"{product_info['name'][0]}[{product_info['code'][0]}]의 정보가 추가되었습니다."
+            self._currentRoom.send_timeline(msg)
+            self.input_log('상품추가', msg)
         # 상품 수정, 입고, 출고
         elif command == 'modify':
             product_info = eval(self.header_split.join(parsed[1:]).strip())
             dao = ProductDAO()
             dao.update_product(product_info)
             dao.close_connection()
-            self.send_product()
+            self.send_product(True)
+            msg = f"{product_info['name']}[{product_info['code']}]의 정보가 수정되었습니다."
+            self._currentRoom.send_timeline(msg)
+            self.input_log('상품수정', msg)
         # 상품 삭제
         elif command == 'delete':
             product_info = eval(self.header_split.join(parsed[1:]).strip())
             dao = ProductDAO()
             dao.delete_product(product_info)
             dao.close_connection()
-            self.send_product()
+            self.send_product(True)
+            msg = f"{product_info['name']}[{product_info['code']}]의 정보가 삭제되었습니다."
+            self._currentRoom.send_timeline(msg)
+            self.input_log('상품삭제', msg)
         # 상품 입고
         elif command == 'take_in':
-            info = eval(self.header_split.join(parsed[1:]).strip())
+            product_info = eval(self.header_split.join(parsed[1:]).strip())
             dao = TakeInDAO()
-            dao.insert_take_in(info)
+            dao.insert_take_in(product_info)
             dao.close_connection()
+            msg = f"{product_info['name'][0]}[{product_info['code'][0]}]이/가 {product_info['amount'][0]}개 입고되었습니다."
+            self._currentRoom.send_timeline(msg)
+            self.input_log('상품입고', msg)
         # 상품 출고
         elif command == 'take_out':
-            info = eval(self.header_split.join(parsed[1:]).strip())
+            product_info = eval(self.header_split.join(parsed[1:]).strip())
             dao = TakeOutDAO()
-            dao.insert_take_out(info)
+            dao.insert_take_out(product_info)
             dao.close_connection()
+            msg = f"{product_info['name'][0]}[{product_info['code'][0]}]이/가 {product_info['amount'][0]}개 출고되었습니다."
+            self._currentRoom.send_timeline(msg)
+            self.input_log('상품출고', msg)
         # 접속종료
         elif command == 'disconnect':
             if self._exists:
+                try:
+                    msg = f'{self._clientName}({self._clientId})이/가 로그아웃 했습니다.'
+                    self._currentRoom.send_out_message(self._clientName)
+                    self._currentRoom.send_timeline(msg)
+                    self.input_log('로그아웃', msg)
+                except Exception as e:
+                    print(e)
                 self._exists = False
-                self.input_log('로그아웃', f'{self._clientName}이/가 로그아웃하였습니다.')
-                print(self._clientName + ' 이/가 접속 종료 하였습니다')
-                self.input_log('logout', self._clientName)
-                self._clientSocket.close()
                 self._currentRoom.remove_client(self)
                 self._currentRoom.get_server().remove_client(self)
-    def get_name_id(self, **manager):
-        """
-        사원아이디, 사원이름 가져오기
-        :param manager:
-        :return:
-        """
-        dao = ManagerDAO()
-        data = dao.get_manager_by_col('id', manager['id'])
-        manager_id = data.id.to_string(index=False)
-        manager_name = data.name.to_string(index=False)
-        dao.close_connection()
-        return manager_id, manager_name
-
-    def checking_login(self, **manager):
-        """
-        로그인 확인
-        :param manager: 로그인 정보
-        :return:
-        """
-        dao = ManagerDAO()
-        data = dao.get_manager_by_col('id', manager['id'])
-        manager_id = data.id.to_string(index=False)
-        manager_pw = data.id.to_string(index=False)
-        dao.close_connection()
-        if manager_id == manager['id'] and manager_pw == manager['pw']:
-            return True
-        elif len(data) == 0:
-            return 'noneid'
-        else:
-            return 'wrongpw'
-
-    def checking_join(self, manager: dict):
-        """
-        회원가입 조건 확인
-        :param manager:
-        :return:
-        """
-        print(manager)
-        dao = ManagerDAO()
-        data = dao.get_manager_by_col('id', manager['id'])
-        if len(data) == 0:
-            dao.insert_manager(id=[manager['id']], pw=[manager['pw']], name=[manager['name']],
-                               depart=[manager['depart']], position=[manager['position']], img=[manager['img']])
-            dao.close_connection()
-            return 'welcome'
-        else:
-            dao.close_connection()
-            return 'doubleid'
-
-    def enter_send(self):
-        """
-        접속자 리스트
-        :return:
-        """
-        enter_list = [client._clientName for client in self._currentRoom._occupants]
-        sending_enter_list = 'enter' + self.header_split + self.split_1.join(enter_list)
-        for client in self._currentRoom._occupants:
-            client.send_to_client(sending_enter_list)
-
-    def send_enter_message(self, name):
-        msg = 'chat' + self.header_split + name + " 이/가 입장 했습니다."
-        self.send_update(msg)
-
-    def send_update(self, msg):
-        """
-        메시지 전송
-        :param msg:
-        :return:
-        """
-        for client in self._currentRoom._occupants:
-            client.send_to_client(msg)
-
-
-    def send_previous(self):
-        """
-        이전 채팅기록 보내기
-        :return:
-        """
-        dao = ChatDAO()
-        data = dao.get_all_chat()
-        dao.close_connection()
-
-        reverse_data = data.iloc[::-1]
-
-        max_fifty_data = reverse_data.iloc[:50]
-
-        dict_data = max_fifty_data.to_dict('records')
-
-        dict_data.reverse()
-
-        for data in dict_data:
-            json_data = json.dumps(data)
-            self.send_json_to_client('log' + self.header_split + json_data)
-
-    def send_product(self):
-        """
-        상품 정보 보내기
-        :return:
-        """
-        dao = ProductDAO()
-        data = dao.get_all_product()
-        dao.close_connection()
-
-        dict_data = data.to_dict('records')
-
-        for data in dict_data:
-            json_data = json.dumps(data)
-            self.send_json_to_client('product' + self.header_split + json_data)
-
-
-
+                self._clientSocket.close()

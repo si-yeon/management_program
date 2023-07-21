@@ -70,13 +70,13 @@ border-bottom:none;
        <number>0</number>
       </property>
       <property name="leftMargin">
-       <number>0</number>
+       <number>20</number>
       </property>
       <property name="topMargin">
        <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>0</number>
+       <number>20</number>
       </property>
       <property name="bottomMargin">
        <number>0</number>
@@ -93,12 +93,8 @@ border-bottom:none;
          <string notr="true">background-color: transparent;
 font-size: 30px;
 text-align: center;
- color: #164DCA;
 border: none;
-border-radius: 0;
-
-
-</string>
+border-radius: 0;</string>
         </property>
         <property name="text">
          <string>메세지</string>
@@ -154,7 +150,6 @@ border-top:none;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -187,7 +182,6 @@ padding: 6px;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>

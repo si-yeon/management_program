@@ -637,7 +637,7 @@ QScrollBar::sub-line:vertical {
           <item>
            <widget class="QStackedWidget" name="stack_view">
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="page_chat">
              <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -757,8 +757,7 @@ font-size: 15px;
             </widget>
             <widget class="QWidget" name="page_profile">
              <property name="styleSheet">
-              <string notr="true">  text-align: center;
-    border: 1px solid #164DCA;</string>
+              <string notr="true"/>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_7">
               <property name="spacing">
@@ -776,36 +775,95 @@ font-size: 15px;
               <property name="bottomMargin">
                <number>0</number>
               </property>
-              <item alignment="Qt::AlignTop">
-               <widget class="QWidget" name="widget_14" native="true">
+              <item>
+               <widget class="QWidget" name="widget_5" native="true">
+                <property name="styleSheet">
+                 <string notr="true">border: 1px solid #164DCA;
+</string>
+                </property>
                 <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
                  <item>
-                  <widget class="QWidget" name="widget_17" native="true">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
+                  <widget class="QWidget" name="widget_15" native="true">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
                    </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>16777215</height>
-                    </size>
+                   <property name="styleSheet">
+                    <string notr="true">QWidget{
+    border: 1px solid #164DCA;
+}
+
+QLabel{
+border: none;
+}</string>
                    </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_9">
-                    <item>
-                     <widget class="QLabel" name="label_2">
+                   <layout class="QGridLayout" name="gridLayout">
+                    <property name="leftMargin">
+                     <number>20</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>20</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>20</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>20</number>
+                    </property>
+                    <property name="horizontalSpacing">
+                     <number>20</number>
+                    </property>
+                    <item row="4" column="0" alignment="Qt::AlignRight">
+                     <widget class="QLabel" name="label_4">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 20px;
+font-weight : 500;</string>
+                      </property>
+                      <property name="text">
+                       <string>이름 :</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0" alignment="Qt::AlignRight">
+                     <widget class="QLabel" name="label_10">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 20px;
+font-weight : 500;</string>
+                      </property>
+                      <property name="text">
+                       <string>입사일 :</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="lb_img">
                       <property name="minimumSize">
                        <size>
-                        <width>90</width>
-                        <height>120</height>
+                        <width>150</width>
+                        <height>150</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>90</width>
-                        <height>120</height>
+                        <width>150</width>
+                        <height>150</height>
                        </size>
                       </property>
                       <property name="text">
@@ -813,103 +871,95 @@ font-size: 15px;
                       </property>
                      </widget>
                     </item>
-                    <item>
-                     <widget class="QLabel" name="label_3">
+                    <item row="9" column="0" alignment="Qt::AlignRight">
+                     <widget class="QLabel" name="label">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 20px;
+font-weight : 500;</string>
+                      </property>
+                      <property name="text">
+                       <string>직급 :</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="7" column="0" alignment="Qt::AlignRight">
+                     <widget class="QLabel" name="label_5">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 20px;
+font-weight : 500;</string>
+                      </property>
+                      <property name="text">
+                       <string>부서 :</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLabel" name="lb_id">
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 20px;</string>
+                      </property>
                       <property name="text">
                        <string>아이디</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QLabel" name="lb_date">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 20px;</string>
+                      </property>
+                      <property name="text">
+                       <string>TextLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="1">
+                     <widget class="QLabel" name="lb_name">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 20px;</string>
+                      </property>
+                      <property name="text">
+                       <string>TextLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="7" column="1">
+                     <widget class="QLabel" name="lb_depart">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 20px;</string>
+                      </property>
+                      <property name="text">
+                       <string>TextLabel</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="9" column="1">
+                     <widget class="QLabel" name="lb_position">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 20px;</string>
+                      </property>
+                      <property name="text">
+                       <string>TextLabel</string>
                       </property>
                      </widget>
                     </item>
                    </layout>
                   </widget>
                  </item>
-                 <item>
-                  <widget class="QTextEdit" name="textEdit">
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="html">
-                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;상태메시지&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                   </property>
-                  </widget>
-                 </item>
                 </layout>
                </widget>
-              </item>
-              <item>
-               <widget class="QWidget" name="widget_15" native="true">
-                <layout class="QGridLayout" name="gridLayout">
-                 <item row="0" column="1">
-                  <widget class="QLabel" name="label_11">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_10">
-                   <property name="text">
-                    <string>입사일</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QLabel" name="label_7">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_5">
-                   <property name="text">
-                    <string>부서</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QLabel" name="label_8">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_6">
-                   <property name="text">
-                    <string>직급</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_4">
-                   <property name="text">
-                    <string>성명</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLabel" name="label_9">
-                   <property name="text">
-                    <string>TextLabel</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QWidget" name="widget_16" native="true"/>
               </item>
              </layout>
             </widget>
@@ -956,7 +1006,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">

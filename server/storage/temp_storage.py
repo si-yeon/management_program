@@ -11,3 +11,5 @@ class TempStorage:
     clients = []
     # 방 리스트
     room_list = []
+    # 이미지 정보
+    image_data = b""

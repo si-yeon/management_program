@@ -4,6 +4,7 @@ import sys
 from datetime import datetime
 from tkinter import filedialog
 
+import bcrypt as bcrypt
 from PyQt5.QtCore import Qt, QRect
 from PyQt5.QtGui import QPixmap, QPainter, QWindow, QBrush, QImage, QPalette, QColor
 from PyQt5.QtWidgets import QLineEdit, QDialog, QListWidgetItem, QApplication
@@ -50,15 +51,12 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
         self.lb_profile_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         # 아이디
-        self.le_id.setPlaceholderText("아이디")
         self.le_id.setEchoMode(QLineEdit.EchoMode.Normal)
 
         # 비밀번호
-        self.le_pw.setPlaceholderText("비밀번호")
         self.le_pw.setEchoMode(QLineEdit.EchoMode.Password)
 
         # 이름
-        self.le_name.setPlaceholderText("닉네임")
         self.le_name.setEchoMode(QLineEdit.EchoMode.Normal)
 
         # 부서
@@ -113,7 +111,7 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
             img_path = filedialog.askopenfilename(initialdir='', title='파일선택', filetypes=(
                 ('png files', '*.png'), ('jpg files', '*.jpg'), ('all files', '*.*')))
             file_name = img_path.split('/')[-1]
-            file_path = f'../img/profile/{file_name}'
+            file_path = f'../client/img/{file_name}'
             self.move_image_file(img_path, file_path)
             self.img_path = file_path
             pixmap = QPixmap(self.img_path)
@@ -215,20 +213,13 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
             if i.isdigit():
                 digit_cnt += 1
 
-        if self.id_ == self.pw_:
-            msg = '아이디와 비밀번호를 다르게 입력해주세요.'
-            self.show_warning_msg(msg)
-
-            self.is_ok = False
-        elif 8 > len(self.pw_) or len(self.pw_) > 15:
+        if 8 > len(self.pw_) or len(self.pw_) > 15:
             msg = '최소 8자리, 최대 15자리까지 입력해주세요.'
             self.show_warning_msg(msg)
-
             self.is_ok = False
         elif upp_cnt < 1 or low_cnt < 1 or digit_cnt < 1:
             msg = '대문자, 소문자, 숫자를 최소 1개 이상 입력해주세요.'
             self.show_warning_msg(msg)
-
             self.is_ok = False
         else:
             msg = '유효한 비밀번호입니다.'
@@ -250,6 +241,17 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
         """
         self.dict_info = dict()
         if self.is_ok:
+            # # 이미지 전송
+            # with open(self.img_path, 'rb') as image_file:
+            #     image_data = image_file.read()
+            #
+            # self.info['socket'][0].sendall(image_data)
+            # self.send_packet(f'image{self.header_split}')
+
+            pw = self.hash_password(self.pw_)
+
+            print(str(pw))
+
             self.dict_info['id'] = [self.id_]
             self.dict_info['pw'] = [self.pw_]
             self.dict_info['name'] = [self.name]
@@ -265,6 +267,16 @@ class MembershipController(QDialog, MembershipView, CommonController, TemporaryS
             self.send_json_packet(msg)
         else:
             pass
+
+    def hash_password(self, pw):
+        """
+        비밀번호 해시화
+        :param pw: 비밀번호
+        :return:
+        """
+        salt = bcrypt.gensalt()
+        hashed_password = bcrypt.hashpw(pw.encode('utf-8'), salt)
+        return hashed_password
 
 
 if __name__ == "__main__":

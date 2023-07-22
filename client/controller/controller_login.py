@@ -76,7 +76,7 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
 
     def input_id(self, id: str):
         """
-        로그인 버튼 비활성화 해제
+        아이디 선언
         :param id: 아이디
         """
         self.id_ = id
@@ -85,7 +85,7 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
 
     def input_pw(self, pw: str):
         """
-        로그인 버튼 비활성화 해제
+        비밀번호 선언
         :param pw: 비밀번호
         """
         self.pw_ = pw
@@ -93,6 +93,10 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
             self.pb_login.setDisabled(False)
 
     def show_membership_view(self):
+        """
+        회원가입 창 띄우기
+        :return:
+        """
         self.dlg.img_path = '../img/profile/who.png'
         pixmap = QPixmap(self.dlg.img_path)
         self.dlg.lb_profile_img.setPixmap(pixmap)
@@ -105,6 +109,10 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
         self.dlg.exec()
 
     def process_login(self):
+        """
+        로그인 진행
+        :return:
+        """
         if self.info['connect'][0]:
             try:
                 dict_data = {'id': [self.id_], 'pw': [self.pw_]}
@@ -112,9 +120,14 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
                 msg = f'login{self.header_split}{json_data}'
                 self.send_json_packet(msg)
             except Exception as e:
-                print(e)
+                # print(e)
+                pass
 
     def check_server_response(self):
+        """
+        서버로부터 응답 체크
+        :return:
+        """
         while not self.stop_flag:
             if not self.info['socket'][0] == None:
                 try:
@@ -125,6 +138,11 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
                     pass
 
     def parse_packet(self, p: str):
+        """
+        서버로부터 받은 응답 파싱
+        :param p:
+        :return:
+        """
         parsed = p.split(self.header_split)
         command = parsed[0]
         if command == 'wrongpw':
@@ -142,15 +160,19 @@ class LoginController(QDialog, LoginView, CommonController, TemporaryStorage):
             self.close()
         elif command == 'doublenick':
             msg = '닉네임이 중복됩니다.'
-            self.dlg.lb_warning_id.setText(msg)
+            self.dlg.show_warning_msg(msg)
         elif command == 'doubleid':
             msg = '해당아이디가 존재합니다.'
-            self.dlg.lb_warning_nick.setText(msg)
+            self.dlg.show_warning_msg(msg)
         elif command == 'welcome':
-            print("웰컴?")
             self.dlg.close()
 
     def closeEvent(self, e):
+        """
+        로그인 창 종료 이벤트
+        :param e:
+        :return:
+        """
         self.stop_flag = True
         if not self.info['connect']:
             self.send_packet(f'disconnect{self.header_split}')

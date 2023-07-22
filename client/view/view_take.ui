@@ -128,7 +128,8 @@ border-radius: 0;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <bold>false</bold>
+          <weight>62</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -199,6 +200,7 @@ border-top:none;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
+          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -231,6 +233,7 @@ padding: 6px;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
+          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>

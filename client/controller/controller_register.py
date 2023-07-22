@@ -11,7 +11,7 @@ from client.storage.temporary_storage import TemporaryStorage
 from client.view.view_register import Ui_Dialog as RegisterView
 
 
-class RegisterController(QDialog, RegisterView, CommonController, TemporaryStorage):
+class RegisterDialog(QDialog, RegisterView, CommonController, TemporaryStorage):
     def __init__(self, row_data={}):
         super().__init__()
         self.init_setting()
@@ -43,9 +43,9 @@ class RegisterController(QDialog, RegisterView, CommonController, TemporaryStora
         if len(self.row_data) != 0:
             path = self.row_data['img'].split('.')
             ext = path[1:]
+            print(self.row_data['img'])
             if ext == 'png':
-                print('1')
-                pixmap = QPixmap(path)
+                pixmap = QPixmap(self.row_data['img'])
             else:
                 self.row_data['img'] = self.img_path
                 pixmap = QPixmap(self.img_path)
@@ -99,16 +99,17 @@ class RegisterController(QDialog, RegisterView, CommonController, TemporaryStora
             img_path = filedialog.askopenfilename(initialdir='', title='파일선택', filetypes=(
                 ('png files', '*.png'), ('jpg files', '*.jpg'), ('all files', '*.*')))
             file_name = img_path.split('/')[-1]
-            file_path = f'../img/product/{file_name}'
-            print(file_path)
+            file_path = f'../client/img/{file_name}'
             self.move_image_file(img_path, file_path)
             self.img_path = file_path
             pixmap = QPixmap(self.img_path)
             self.img.setPixmap(pixmap)
             self.img.setScaledContents(True)
             self.img.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.row_data['img'] = self.img_path
         except:
             self.img_path = '../img/product/question.png'
+        self.row_data['img'] = self.img_path
 
     def move_image_file(self, source_path, destination_path):
         """
@@ -126,7 +127,8 @@ class RegisterController(QDialog, RegisterView, CommonController, TemporaryStora
             pass
 
     def reset_all(self):
-        # self.code.clear()
+        # self.row_data.clear()
+        self.code.clear()
         self.img.clear()
         self.type.clear()
         self.brand.clear()
@@ -138,10 +140,3 @@ class RegisterController(QDialog, RegisterView, CommonController, TemporaryStora
 
     def closeEvent(self, e):
         self.close()
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    a = RegisterController()
-    a.show()
-    sys.exit(app.exec_())

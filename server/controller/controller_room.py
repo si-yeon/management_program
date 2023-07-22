@@ -2,6 +2,11 @@ from server.storage.temp_storage import TempStorage
 
 class RoomController(TempStorage):
     def __init__(self, name, server_):
+        """
+        방 속성
+        :param name: 방이름
+        :param server_: 서버
+        """
         self._roomName = name
         self._server = server_
         self._occupants = []

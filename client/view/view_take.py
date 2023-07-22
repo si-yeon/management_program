@@ -71,7 +71,8 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(False)
+        font.setBold(True)
+        font.setWeight(62)
         self.sb_num.setFont(font)
         self.sb_num.setStyleSheet("border: none;\n"
 "border-bottom: 2px solid #164DCA;   \n"
@@ -105,6 +106,7 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
+        font.setWeight(75)
         self.pb_check.setFont(font)
         self.pb_check.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"
@@ -124,6 +126,7 @@ class Ui_Dialog(object):
         font.setFamily("Pretendard")
         font.setPointSize(-1)
         font.setBold(True)
+        font.setWeight(75)
         self.pb_cancel.setFont(font)
         self.pb_cancel.setStyleSheet("QPushButton{\n"
 "background: #164DCA;\n"

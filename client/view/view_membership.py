@@ -246,7 +246,8 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(False)
+        font.setBold(True)
+        font.setWeight(62)
         self.pb_join.setFont(font)
         self.pb_join.setStyleSheet("border: 2px solid #164DCA;\n"
 "    background-color: #fff;\n"
@@ -264,7 +265,8 @@ class Ui_Dialog(object):
         font = QtGui.QFont()
         font.setFamily("Pretendard")
         font.setPointSize(-1)
-        font.setBold(False)
+        font.setBold(True)
+        font.setWeight(62)
         self.pb_member.setFont(font)
         self.pb_member.setStyleSheet("border: 2px solid #164DCA;\n"
 "    background-color: #fff;\n"
@@ -280,6 +282,7 @@ class Ui_Dialog(object):
         self.verticalLayout_2.addWidget(self.widget_4)
 
         self.retranslateUi(Dialog)
+        self.pb_member.clicked.connect(Dialog.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):

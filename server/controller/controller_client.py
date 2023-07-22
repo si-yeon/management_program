@@ -13,7 +13,14 @@ from server.storage.temp_storage import TempStorage
 
 class ClientController(TempStorage, CommonController):
     def __init__(self, name: str, conn, addr, room: Room):
-        self._clientId = 0
+        """
+        클라이언트의 속성
+        :param name: 클라이언트 이름
+        :param conn: 클라이언트 소켓
+        :param addr: 클라이언트 주소
+        :param room: 클라이언트가 속해있는 방
+        """
+        self._clientId = ''
         self._clientName = name
         self._clientSocket = conn
         self._clientAddress = addr
@@ -68,7 +75,6 @@ class ClientController(TempStorage, CommonController):
         :param manager:
         :return:
         """
-        print(manager)
         dao = ManagerDAO()
         data = dao.get_manager_by_col('id', manager['id'][0])
         if len(data) == 0:
@@ -119,6 +125,22 @@ class ClientController(TempStorage, CommonController):
             else:
                 self.send_to_client('product' + self.header_split + str(idx) + self.split_1 + json_data)
 
+    def send_profile_info(self):
+        """
+        관리자 정보 보내기
+        :param is_all: True: 모두, False: 접속자만
+        :return:
+        """
+        dao = ManagerDAO()
+        data = dao.get_manager_by_col('id', self._clientId)
+        dao.close_connection()
+
+        dict_data = data.to_dict('records')
+
+        json_data = json.dumps(dict_data[0])
+
+        self.send_to_client('manager' + self.header_split + json_data)
+
     def send_to_client(self, data: str):
         packet_length = 4096
         if len(data.encode('utf-8')) < packet_length:
@@ -160,7 +182,6 @@ class ClientController(TempStorage, CommonController):
         :return:
         """
         parsed = parce.split(self.header_split)
-        # 헤더
         command = parsed[0].strip()
         # 회원가입
         if command == 'join':
@@ -171,6 +192,12 @@ class ClientController(TempStorage, CommonController):
                 self.input_log('회원가입', f"{manager_info['name'][0]}({manager_info['id'][0]})이/가 회원가입 했습니다.")
             elif result == 'doubleid':
                 self.send_to_client('doubleid' + self.header_split)
+        # 이미지 처리
+        elif command == 'image':
+            print(self.image_data)
+            with open('../server/img/test.png', 'wb') as image_file:
+                image_file.write(self.image_data)
+            self.image_data = b""
         # 로그인
         elif command == 'login':
             manager_info = eval(self.header_split.join(parsed[1:]).strip())
@@ -193,6 +220,7 @@ class ClientController(TempStorage, CommonController):
                 self.send_to_client('noneid' + self.header_split)
         # 채팅방 입장
         elif command == 'enter':
+            self.send_profile_info()
             self.send_previous()
             self._currentRoom.send_enter_message(self._clientName)
             self.send_product()
@@ -257,9 +285,9 @@ class ClientController(TempStorage, CommonController):
             if self._exists:
                 try:
                     msg = f'{self._clientName}({self._clientId})이/가 로그아웃 했습니다.'
-                    self._currentRoom.send_out_message(self._clientName)
-                    self._currentRoom.send_timeline(msg)
                     self.input_log('로그아웃', msg)
+                    self._currentRoom.send_timeline(msg)
+                    self._currentRoom.send_out_message(self._clientName)
                 except Exception as e:
                     print(e)
                 self._exists = False

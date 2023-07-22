@@ -1,5 +1,6 @@
 from PyQt5.QtCore import QObject, pyqtSignal
 
+
 class SignalController(QObject):
     # 입고
     take_in_signal = pyqtSignal()
@@ -11,10 +12,11 @@ class SignalController(QObject):
     update_signal = pyqtSignal()
     # 삭제
     delete_signal = pyqtSignal()
+    # 매니저
+    manager_signal = pyqtSignal(dict)
     # 채팅
     chat_signal = pyqtSignal(str, str)
-    # 상품 정보 업데이트
+    # 상품 관련
     product_signal = pyqtSignal(dict)
     # 타임라인
     timeline_siganl = pyqtSignal(str, str)
-

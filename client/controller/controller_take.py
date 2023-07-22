@@ -8,7 +8,7 @@ from client.storage.temporary_storage import TemporaryStorage
 from client.view.view_take import Ui_Dialog as TakeView
 
 
-class TakeController(QDialog, TakeView, CommonController, TemporaryStorage):
+class TakeDialog(QDialog, TakeView, CommonController, TemporaryStorage):
     def __init__(self, code):
         super().__init__()
         self.init_setting()
@@ -55,6 +55,6 @@ class TakeController(QDialog, TakeView, CommonController, TemporaryStorage):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    a = TakeController()
+    a = TakeDialog()
     a.exec()
     sys.exit(app.exec_())

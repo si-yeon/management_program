@@ -68,7 +68,7 @@ class CommonController(TemporaryStorage):
         :return:
         """
         if self.info['connect'][0]:
-            self.info['socket'][0].send(p.encode())
+            self.info['socket'][0].send(p.encode('UTF-8'))
 
     def send_json_packet(self, msg: str):
         """

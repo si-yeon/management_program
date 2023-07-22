@@ -583,7 +583,8 @@ border-top:none;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <bold>false</bold>
+          <weight>62</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -614,7 +615,8 @@ border-top:none;
          <font>
           <family>Pretendard</family>
           <pointsize>-1</pointsize>
-          <bold>false</bold>
+          <weight>62</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -639,5 +641,22 @@ border-top:none;
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pb_member</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>415</x>
+     <y>274</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>609</x>
+     <y>280</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

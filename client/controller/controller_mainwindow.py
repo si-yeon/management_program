@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 import threading
 import time
@@ -6,16 +7,16 @@ from datetime import datetime
 
 import openpyxl
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QListWidgetItem, QWidget, QHBoxLayout, QLabel, \
     QSpacerItem, QSizePolicy, QPushButton
 
 from client.controller.controller_check import CheckDialog
 from client.controller.controller_common import CommonController
 from client.controller.controller_name import NameDialog
-from client.controller.controller_register import RegisterController
+from client.controller.controller_register import RegisterDialog
 from client.controller.controller_signal import SignalController as Signal
-from client.controller.controller_take import TakeController
+from client.controller.controller_take import TakeDialog
 from client.storage.temporary_storage import TemporaryStorage
 from client.view.view_main import Ui_MainWindow as MainView
 
@@ -49,7 +50,6 @@ class Check(QThread):
         while True:
             time.sleep(10)
             self.checked.emit()
-
 
 class MainWindowController(QMainWindow, MainView, CommonController, TemporaryStorage):
     def __init__(self):
@@ -121,6 +121,9 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
         self.le_find.returnPressed.connect(self.filter_table)
         self.pb_find.clicked.connect(self.filter_table)
 
+        # 상품 정보
+        self.signal.product_signal.connect(self.data_to_table)
+
         # 추가 버튼 클릭
         self.pb_add.clicked.connect(lambda x=None, txt='추가': self.show_register_view(txt))
 
@@ -142,20 +145,21 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
         # 채팅 버튼 클릭
         self.pb_chat.clicked.connect(self.show_chat_view)
 
-        # 타임라인 버튼 클릭
-        self.pb_timeline.clicked.connect(self.show_timeline_view)
-        self.signal.timeline_siganl.connect(self.add_timeline_message)
-
-        # 관리자 정보 버튼 클릭
-        self.pb_profile.clicked.connect(self.show_profile_view)
-
         # 메시지 관련
         self.signal.chat_signal.connect(self.add_chat_message)
         self.le_msg.returnPressed.connect(self.send_message)
         self.pb_send.clicked.connect(self.send_message)
 
-        # 상품 정보 업데이트
-        self.signal.product_signal.connect(self.data_to_table)
+        # 타임라인 버튼 클릭
+        self.pb_timeline.clicked.connect(self.show_timeline_view)
+        self.signal.timeline_siganl.connect(self.add_timeline_message)
+
+        # 관리자 정보
+        self.pb_profile.clicked.connect(self.show_profile_view)
+        self.signal.manager_signal.connect(self.set_manager_info)
+
+        # 로그아웃
+        self.pb_logout.clicked.connect(self.restart_program)
 
     def init_method(self):
         """
@@ -170,6 +174,11 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
         self.check_thread = Check()
         self.check_thread.checked.connect(self.alarm_shortage_inven)
         self.check_thread.start()
+
+    def restart_program(self):
+        self.send_packet(f'disconnect{self.header_split}')
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
 
     def alarm_on_off(self):
         """
@@ -261,7 +270,7 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
         """
         row_data = self.get_selected_row_data()
         if len(row_data) > 0:
-            dlg = TakeController(row_data['code'])
+            dlg = TakeDialog(row_data['code'])
             dlg.exec()
             if dlg.is_check:
                 code = row_data['code']
@@ -291,7 +300,7 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
                 msg = f'modify{self.header_split}{json_data}'
                 self.send_json_packet(msg)
         else:
-            check_dlg = CheckDialog('삭제할 상품을 먼저 선택해주세요!')
+            check_dlg = CheckDialog('상품을 먼저 선택해주세요!')
             check_dlg.exec()
 
     def show_timeline_view(self):
@@ -328,8 +337,9 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
         """
         if action == '수정':
             row_data = self.get_selected_row_data()
+            print(row_data)
             if len(row_data) > 0:
-                dlg = RegisterController(row_data)
+                dlg = RegisterDialog(row_data)
                 dlg.code.setDisabled(True)
                 dlg.exec()
                 if dlg.is_save:
@@ -340,7 +350,7 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
                 check_dlg = CheckDialog('수정할 상품을 먼저 선택해주세요!')
                 check_dlg.exec()
         else:
-            dlg = RegisterController()
+            dlg = RegisterDialog()
             dlg.reset_all()
             dlg.exec()
             dict_data = {}
@@ -352,6 +362,21 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
                     json_data = json.dumps(dict_data)
                     msg = f'add{self.header_split}{json_data}'
                     self.send_json_packet(msg)
+
+    def set_manager_info(self, info: dict):
+        """
+        관리자 정보 세팅
+        :param info: 관리자 정보
+        :return:
+        """
+        pixmap = QPixmap(info['img'])
+        self.lb_img.setPixmap(pixmap)
+        self.lb_img.setScaledContents(True)
+        self.lb_id.setText(info['id'])
+        self.lb_date.setText(info['date'])
+        self.lb_name.setText(info['name'])
+        self.lb_depart.setText(info['depart'])
+        self.lb_position.setText(info['position'])
 
     def get_selected_row_data(self):
         selected_rows = set(index.row() for index in self.tableWidget.selectedIndexes())
@@ -371,24 +396,6 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
         for row in reversed(range(num_rows)):
             self.tableWidget.removeRow(row)
 
-    def add_new_row(self):
-        """
-        테이블 위젯 행 추가
-        :return:
-        """
-        checkbox_item = QTableWidgetItem()
-        checkbox_item.setFlags(Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
-        checkbox_item.setCheckState(Qt.Unchecked)
-
-        row_count = self.tableWidget.rowCount()
-        self.tableWidget.insertRow(row_count)
-        for i in range(self.tableWidget.columnCount()):
-            if i == 0:
-                self.tableWidget.setItem(row_count, i, checkbox_item)
-            else:
-                self.tableWidget.setItem(row_count, i, QTableWidgetItem(f"New Row, Col {i}"))
-        self.tableWidget.resizeColumnsToContents()
-
     def data_to_table(self, data: dict):
         """
         서버로부터 받은 데이터 테이블 위젯에 넣기
@@ -398,9 +405,18 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
         row = self.tableWidget.rowCount()
         self.tableWidget.setRowCount(row + 1)
         for col, (field_eng, field_kor) in enumerate(self.column_map.items()):
-            item = QTableWidgetItem(str(data[field_eng]))
+            if field_eng == 'img':
+                pixmap = QPixmap(str(data[field_eng])).scaled(100, 100)  # 이미지 크기 조절
+                icon = QIcon(pixmap)
+                item = QTableWidgetItem()
+                item.setIcon(icon)
+                item.setTextAlignment(Qt.AlignCenter)
+
+            else:
+                item = QTableWidgetItem(str(data[field_eng]))
             item.setFlags(item.flags() & ~Qt.ItemIsEditable)
             self.tableWidget.setItem(row, col, item)
+        self.tableWidget.resizeColumnsToContents()
 
     def add_timeline_message(self, msg: str, time: str):
         """
@@ -436,15 +452,12 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
         widget = QWidget()
         self.lw_chat_room.setSpacing(3)
 
-        # --- msg_hbox_layout 생성
         self.msg_hbox_layout = QHBoxLayout()
         self.msg_hbox_layout.setContentsMargins(5, 0, 5, 5)
 
-        # --- msg_label 생성
         self.msg_label = QLabel(msg)
         self.msg_label.setWordWrap(True)
 
-        # --- 상대방 메시지, 내 메시지 분류
         if who == 'server':
             self.msg_label.setStyleSheet("background-color: transparent; border: none; color: black")
             self.msg_label.setAlignment(Qt.AlignCenter)
@@ -502,13 +515,13 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
     def check_server_response(self):
         while self.info['connect'][0]:
             if not self.info['socket'][0] == None:
-                try:
-                    response = self.info['socket'][0].recv(4096).decode("UTF-8")
-                    if len(response.encode('utf8')) <= 4096:
-                        self.parse_packet(response)
-                except Exception as e:
-                    print(e)
-                    pass
+                # try:
+                response = self.info['socket'][0].recv(4096).decode("UTF-8")
+                if len(response.encode('utf8')) <= 4096:
+                    self.parse_packet(response)
+                # except Exception as e:
+                #     print(e)
+                #     pass
 
     def parse_packet(self, p: str):
         """
@@ -523,14 +536,14 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
             self.signal.chat_signal.emit(self.header_split.join(parsed[1:]).strip(), 'other')
         # 지난 대화기록
         elif command == 'log':
-            data = eval(''.join(parsed[1:]).strip())
+            data = eval(self.header_split.join(parsed[1:]).strip())
             if data['id'] == self.info['id'][0]:
                 self.signal.chat_signal.emit(f"{data['name']}: {data['content']}", 'me')
             else:
                 self.signal.chat_signal.emit(f"{data['name']}: {data['content']}", 'other')
         # 상품 정보
         elif command == 'product':
-            datas = ''.join(parsed[1:]).strip()
+            datas = self.header_split.join(parsed[1:]).strip()
             idx = datas.split(self.split_1)[0]
             data = eval(datas.split(self.split_1)[1])
             if idx == '0':
@@ -552,8 +565,9 @@ class MainWindowController(QMainWindow, MainView, CommonController, TemporarySto
             time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             self.signal.timeline_siganl.emit(self.header_split.join(parsed[1:]).strip(), time)
         # 관리자 정보
-        elif command == 'managerinfo':
-            self.classcenterframe.theSignal.emit(self.header_split.join(parsed[1:]).strip(), False)
+        elif command == 'manager':
+            data = eval(self.header_split.join(parsed[1:]).strip())
+            self.signal.manager_signal.emit(data)
         # 연결 종료
         elif command == 'disconnect':
             self.info['socket'][0].close()
